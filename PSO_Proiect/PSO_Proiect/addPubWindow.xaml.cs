@@ -20,10 +20,17 @@ namespace PSO_Proiect
     /// </summary>
     public partial class addPubWindow : UserControl
     {
+        public appDBDataContext appDB = new appDBDataContext();
+
         public Action backFromPubsButtonAction;
         public addPubWindow()
         {
             InitializeComponent();
+
+            var mods = (from moduri in appDB.ModPrezentare1s
+                        select moduri.Tip).ToList();
+
+            this.modeComboBox.ItemsSource=mods;
         }
 
         private void pubTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)

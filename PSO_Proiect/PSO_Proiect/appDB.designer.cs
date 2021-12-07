@@ -54,6 +54,9 @@ namespace PSO_Proiect
     partial void InsertPublicatii(Publicatii instance);
     partial void UpdatePublicatii(Publicatii instance);
     partial void DeletePublicatii(Publicatii instance);
+    partial void InsertModPrezentare1(ModPrezentare1 instance);
+    partial void UpdateModPrezentare1(ModPrezentare1 instance);
+    partial void DeleteModPrezentare1(ModPrezentare1 instance);
     #endregion
 		
 		public appDBDataContext() : 
@@ -171,6 +174,14 @@ namespace PSO_Proiect
 			get
 			{
 				return this.GetTable<Publicatii>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ModPrezentare1> ModPrezentare1s
+		{
+			get
+			{
+				return this.GetTable<ModPrezentare1>();
 			}
 		}
 	}
@@ -407,6 +418,8 @@ namespace PSO_Proiect
 		
 		private EntityRef<Publicatii> _Publicatii;
 		
+		private EntityRef<ModPrezentare1> _ModPrezentare1;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -437,6 +450,7 @@ namespace PSO_Proiect
 			this._Detalii = default(EntityRef<Detalii>);
 			this._ModPrezentare = default(EntityRef<ModPrezentare>);
 			this._Publicatii = default(EntityRef<Publicatii>);
+			this._ModPrezentare1 = default(EntityRef<ModPrezentare1>);
 			OnCreated();
 		}
 		
@@ -555,7 +569,7 @@ namespace PSO_Proiect
 			{
 				if ((this._IDMod != value))
 				{
-					if (this._ModPrezentare.HasLoadedOrAssignedValue)
+					if ((this._ModPrezentare.HasLoadedOrAssignedValue || this._ModPrezentare1.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -743,6 +757,40 @@ namespace PSO_Proiect
 						this._IDPublicatie = default(int);
 					}
 					this.SendPropertyChanged("Publicatii");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ModPrezentare1_Articole", Storage="_ModPrezentare1", ThisKey="IDMod", OtherKey="IDMod", IsForeignKey=true)]
+		public ModPrezentare1 ModPrezentare1
+		{
+			get
+			{
+				return this._ModPrezentare1.Entity;
+			}
+			set
+			{
+				ModPrezentare1 previousValue = this._ModPrezentare1.Entity;
+				if (((previousValue != value) 
+							|| (this._ModPrezentare1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ModPrezentare1.Entity = null;
+						previousValue.Articoles.Remove(this);
+					}
+					this._ModPrezentare1.Entity = value;
+					if ((value != null))
+					{
+						value.Articoles.Add(this);
+						this._IDMod = value.IDMod;
+					}
+					else
+					{
+						this._IDMod = default(int);
+					}
+					this.SendPropertyChanged("ModPrezentare1");
 				}
 			}
 		}
@@ -1796,6 +1844,120 @@ namespace PSO_Proiect
 		{
 			this.SendPropertyChanging();
 			entity.Publicatii = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ModPrezentare")]
+	public partial class ModPrezentare1 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDMod;
+		
+		private string _Tip;
+		
+		private EntitySet<Articole> _Articoles;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDModChanging(int value);
+    partial void OnIDModChanged();
+    partial void OnTipChanging(string value);
+    partial void OnTipChanged();
+    #endregion
+		
+		public ModPrezentare1()
+		{
+			this._Articoles = new EntitySet<Articole>(new Action<Articole>(this.attach_Articoles), new Action<Articole>(this.detach_Articoles));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDMod", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDMod
+		{
+			get
+			{
+				return this._IDMod;
+			}
+			set
+			{
+				if ((this._IDMod != value))
+				{
+					this.OnIDModChanging(value);
+					this.SendPropertyChanging();
+					this._IDMod = value;
+					this.SendPropertyChanged("IDMod");
+					this.OnIDModChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tip", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Tip
+		{
+			get
+			{
+				return this._Tip;
+			}
+			set
+			{
+				if ((this._Tip != value))
+				{
+					this.OnTipChanging(value);
+					this.SendPropertyChanging();
+					this._Tip = value;
+					this.SendPropertyChanged("Tip");
+					this.OnTipChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ModPrezentare1_Articole", Storage="_Articoles", ThisKey="IDMod", OtherKey="IDMod")]
+		public EntitySet<Articole> Articoles
+		{
+			get
+			{
+				return this._Articoles;
+			}
+			set
+			{
+				this._Articoles.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Articoles(Articole entity)
+		{
+			this.SendPropertyChanging();
+			entity.ModPrezentare1 = this;
+		}
+		
+		private void detach_Articoles(Articole entity)
+		{
+			this.SendPropertyChanging();
+			entity.ModPrezentare1 = null;
 		}
 	}
 }

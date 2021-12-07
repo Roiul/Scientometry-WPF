@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="APP_Scientometrie" Class="appDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=APP_Scientometrie;Integrated Security=True" SettingsObjectName="PSO_Proiect.Properties.Settings" SettingsPropertyName="APP_ScientometrieConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Afilieri" Member="Afilieris">
+    <Type Name="Afilieri">
+      <Column Name="IDAfiliere" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Association Name="Afilieri_Autor_Afiliere" Member="Autor_Afilieres" ThisKey="IDAfiliere" OtherKey="IDAfiliere" Type="Autor_Afiliere" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Tip Publicatie]" Member="Tip_Publicaties">
+    <Type Name="Tip_Publicatie">
+      <Column Name="IDTipPublicatie" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tip" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Tip_Publicatie_Publicatii" Member="Publicatiis" ThisKey="IDTipPublicatie" OtherKey="TipPublicatie" Type="Publicatii" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Articole" Member="Articoles">
+    <Type Name="Articole">
+      <Column Name="IDArticol" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FactorImpact" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="IDPublicatie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDAutor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDMod" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WOS" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DOI" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IDDetalii" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Articole_Autori_Articole" Member="Autori_Articoles" ThisKey="IDArticol" OtherKey="IDArticol" Type="Autori_Articole" />
+      <Association Name="Articole_Citari" Member="Citaris" ThisKey="IDArticol" OtherKey="IDArticol" Type="Citari" />
+      <Association Name="Detalii_Articole" Member="Detalii" ThisKey="IDDetalii" OtherKey="IDDetalii" Type="Detalii" IsForeignKey="true" />
+      <Association Name="ModPrezentare_Articole" Member="ModPrezentare" ThisKey="IDMod" OtherKey="IDMod" Type="ModPrezentare" IsForeignKey="true" />
+      <Association Name="Publicatii_Articole" Member="Publicatii" ThisKey="IDPublicatie" OtherKey="IDPublicatie" Type="Publicatii" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Autor_Afiliere" Member="Autor_Afilieres">
+    <Type Name="Autor_Afiliere">
+      <Column Name="IDAutor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDAfiliere" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Afilieri_Autor_Afiliere" Member="Afilieri" ThisKey="IDAfiliere" OtherKey="IDAfiliere" Type="Afilieri" IsForeignKey="true" />
+      <Association Name="Autori_Autor_Afiliere" Member="Autori" ThisKey="IDAutor" OtherKey="IDAutor" Type="Autori" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Autori" Member="Autoris">
+    <Type Name="Autori">
+      <Column Name="IDAutor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Prenume" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Afiliere" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UEFID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Link" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="Autori_Autor_Afiliere" Member="Autor_Afilieres" ThisKey="IDAutor" OtherKey="IDAutor" Type="Autor_Afiliere" />
+      <Association Name="Autori_Autori_Articole" Member="Autori_Articoles" ThisKey="IDAutor" OtherKey="IDAutor" Type="Autori_Articole" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Autori_Articole" Member="Autori_Articoles">
+    <Type Name="Autori_Articole">
+      <Column Name="IDAutor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDArticol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Articole_Autori_Articole" Member="Articole" ThisKey="IDArticol" OtherKey="IDArticol" Type="Articole" IsForeignKey="true" />
+      <Association Name="Autori_Autori_Articole" Member="Autori" ThisKey="IDAutor" OtherKey="IDAutor" Type="Autori" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Citari" Member="Citaris">
+    <Type Name="Citari">
+      <Column Name="IDCitare" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDArticol" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ISI" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BDI" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Citari_DOI_Citari" Member="DOI_Citaris" ThisKey="IDCitare" OtherKey="IDCitare" Type="DOI_Citari" />
+      <Association Name="Articole_Citari" Member="Articole" ThisKey="IDArticol" OtherKey="IDArticol" Type="Articole" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Detalii" Member="Detaliis">
+    <Type Name="Detalii">
+      <Column Name="IDDetalii" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="An" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Pagina" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Volum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Numar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Detalii_Articole" Member="Articoles" ThisKey="IDDetalii" OtherKey="IDDetalii" Type="Articole" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DOI_Citari" Member="DOI_Citaris">
+    <Type Name="DOI_Citari">
+      <Column Name="IDCitare" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DOI" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="Citari_DOI_Citari" Member="Citari" ThisKey="IDCitare" OtherKey="IDCitare" Type="Citari" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ModPrezentare" Member="ModPrezentares">
+    <Type Name="ModPrezentare">
+      <Column Name="IDMod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tip" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ModPrezentare_Articole" Member="Articoles" ThisKey="IDMod" OtherKey="IDMod" Type="Articole" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Publicatii" Member="Publicatiis">
+    <Type Name="Publicatii">
+      <Column Name="IDPublicatie" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TipPublicatie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Editor" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Publicatii_Articole" Member="Articoles" ThisKey="IDPublicatie" OtherKey="IDPublicatie" Type="Articole" />
+      <Association Name="Tip_Publicatie_Publicatii" Member="Tip_Publicatie" ThisKey="TipPublicatie" OtherKey="IDTipPublicatie" Type="Tip_Publicatie" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

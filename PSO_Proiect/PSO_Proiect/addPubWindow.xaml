@@ -9,29 +9,41 @@
     <Grid>
         <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Margin="0,9,0,0" TextWrapping="Wrap" Text="Adaugare articol" VerticalAlignment="Top" Width="286" Height="38" FontSize="20"/>
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,47,0,0" TextWrapping="Wrap" Text="Nume" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="154,50,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="618" />
+        <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="154,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618" />
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,70,0,0" TextWrapping="Wrap" Text="Factor impact" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <TextBox x:Name="impactFactorTextBox" HorizontalAlignment="Left" Margin="154,73,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="618" />
+        <TextBox x:Name="impactFactorTextBox" HorizontalAlignment="Left" Margin="154,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618" />
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,94,0,0" TextWrapping="Wrap" Text="Anul" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <TextBox x:Name="yearTextBox" HorizontalAlignment="Left" Margin="154,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="618" />
+        <TextBox x:Name="yearTextBox" HorizontalAlignment="Left" Margin="154,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618" />
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,116,0,0" TextWrapping="Wrap" Text="Pagina" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <TextBox x:Name="pageTextBox" HorizontalAlignment="Left" Margin="154,119,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="618" />
+        <TextBox x:Name="pageTextBox" HorizontalAlignment="Left" Margin="154,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618" />
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,140,0,0" TextWrapping="Wrap" Text="Volum" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <TextBox x:Name="volumeTextBox" HorizontalAlignment="Left" Margin="154,142,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="618" />
+        <TextBox x:Name="volumeTextBox" HorizontalAlignment="Left" Margin="154,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618" />
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,163,0,0" TextWrapping="Wrap" Text="Numar" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <TextBox x:Name="numberTextBox" HorizontalAlignment="Left" Margin="154,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="618" />
+        <TextBox x:Name="numberTextBox" HorizontalAlignment="Left" Margin="154,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618" />
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,187,0,0" TextWrapping="Wrap" Text="Publicatie" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <TextBox x:Name="pubTextBox" HorizontalAlignment="Left" Margin="154,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="618" MouseDoubleClick="pubTextBox_MouseDoubleClick"/>
+        <TextBox x:Name="pubTextBox" HorizontalAlignment="Left" Margin="154,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618" MouseDoubleClick="pubTextBox_MouseDoubleClick"/>
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,210,0,0" TextWrapping="Wrap" Text="WOS" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <TextBox x:Name="wosTextBox" HorizontalAlignment="Left" Margin="154,212,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="618" />
+        <TextBox x:Name="wosTextBox" HorizontalAlignment="Left" Margin="154,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618" />
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,233,0,0" TextWrapping="Wrap" Text="DOI" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <TextBox x:Name="doiTextBox" HorizontalAlignment="Left" Margin="154,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="618" />
+        <TextBox x:Name="doiTextBox" HorizontalAlignment="Left" Margin="154,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="618" />
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,258,0,0" TextWrapping="Wrap" Text="Mod prezentare" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,312,0,0" TextWrapping="Wrap" Text="Lista autori" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
         <ComboBox x:Name="modeComboBox" HorizontalAlignment="Left" Margin="154,258,0,0" VerticalAlignment="Top" Width="618"/>
-        <DataGrid x:Name="authorsDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="154,312,28,59"/>
+        <DataGrid x:Name="authorsDataGrid" Margin="154,312,28,59">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="deleteRecord" Header="Delete" Click="deleteRecord_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="lname" Header="Nume" Binding="{Binding lName}" Width="150" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="fname" Header="Prenume" Binding="{Binding fName}" Width="160" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="UEFID" Header="UEFID" Binding="{Binding uefid}" Width="70" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="Link" Header="Link" Binding="{Binding link}" Width="240" CanUserResize="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="backToMainButton" Content="Back" HorizontalAlignment="Left" Margin="40,364,0,0" VerticalAlignment="Top" Height="27" Width="79" Click="backToMainButton_Click"/>
         <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="10,285,0,0" TextWrapping="Wrap" Text="Autor" VerticalAlignment="Top" Width="139" Height="21" FontSize="15"/>
-        <ComboBox x:Name="authorComboBox" HorizontalAlignment="Left" Margin="154,285,0,0" VerticalAlignment="Top" Width="618"/>
+        <ComboBox x:Name="authorComboBox" HorizontalAlignment="Left" Margin="154,285,0,0" VerticalAlignment="Top" Width="618" SelectionChanged="authorComboBox_SelectionChanged"/>
     </Grid>
 </UserControl>

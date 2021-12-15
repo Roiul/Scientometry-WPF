@@ -30,11 +30,11 @@
       <Association Name="Detalii_Articole" Member="Detalii" ThisKey="IDDetalii" OtherKey="IDDetalii" Type="Detalii" IsForeignKey="true" />
       <Association Name="ModPrezentare_Articole" Member="ModPrezentare" ThisKey="IDMod" OtherKey="IDMod" Type="ModPrezentare" IsForeignKey="true" />
       <Association Name="Publicatii_Articole" Member="Publicatii" ThisKey="IDPublicatie" OtherKey="IDPublicatie" Type="Publicatii" IsForeignKey="true" />
-      <Association Name="ModPrezentare1_Articole" Member="ModPrezentare1" ThisKey="IDMod" OtherKey="IDMod" Type="ModPrezentare1" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Autor_Afiliere" Member="Autor_Afilieres">
     <Type Name="Autor_Afiliere">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IDAutor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IDAfiliere" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Afilieri_Autor_Afiliere" Member="Afilieri" ThisKey="IDAfiliere" OtherKey="IDAfiliere" Type="Afilieri" IsForeignKey="true" />
@@ -46,7 +46,6 @@
       <Column Name="IDAutor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nume" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
       <Column Name="Prenume" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Afiliere" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UEFID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Link" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Association Name="Autori_Autor_Afiliere" Member="Autor_Afilieres" ThisKey="IDAutor" OtherKey="IDAutor" Type="Autor_Afiliere" />
@@ -104,13 +103,6 @@
       <Column Name="Editor" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="Publicatii_Articole" Member="Articoles" ThisKey="IDPublicatie" OtherKey="IDPublicatie" Type="Articole" />
       <Association Name="Tip_Publicatie_Publicatii" Member="Tip_Publicatie" ThisKey="TipPublicatie" OtherKey="IDTipPublicatie" Type="Tip_Publicatie" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ModPrezentare" Member="ModPrezentare1s">
-    <Type Name="ModPrezentare1">
-      <Column Name="IDMod" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Tip" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="ModPrezentare1_Articole" Member="Articoles" ThisKey="IDMod" OtherKey="IDMod" Type="Articole" />
     </Type>
   </Table>
 </Database>

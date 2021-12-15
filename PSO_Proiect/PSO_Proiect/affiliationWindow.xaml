@@ -1,0 +1,17 @@
+﻿<Window x:Class="PSO_Proiect.affiliationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PSO_Proiect"
+        mc:Ignorable="d"
+        Title="affiliationWindow" Height="160" Width="292">
+    <Grid Margin="0,0,0,-1">
+        <TextBox x:Name="nameBox" HorizontalAlignment="Left" Margin="90,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Afiliere noua" VerticalAlignment="Top" RenderTransformOrigin="1.016,0.629" FontSize="20" Margin="84,10,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Margin="39,52,0,0" TextWrapping="Wrap" Text="Nume" VerticalAlignment="Top"/>
+        <Button x:Name="addButton" Content="Adauga&#xD;&#xA;" HorizontalAlignment="Left" Margin="57,83,0,0" VerticalAlignment="Top" Height="28" Width="79" Click="addButton_Click"/>
+        <Button x:Name="exitButton" Content="Renunta" HorizontalAlignment="Left" Margin="156,83,0,0" VerticalAlignment="Top" Height="28" Width="79" Click="exitButton_Click"/>
+
+    </Grid>
+</Window>

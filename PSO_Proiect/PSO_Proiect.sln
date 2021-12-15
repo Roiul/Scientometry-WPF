@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSO_Proiect", "PSO_Proiect\PSO_Proiect.csproj", "{9504F48F-5522-4631-9977-41ADFC78EB0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibtexIntroduction", "BibtexIntroduction\BibtexIntroduction.csproj", "{D426406C-03C0-40A8-95DF-2914E6D3B5CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9504F48F-5522-4631-9977-41ADFC78EB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9504F48F-5522-4631-9977-41ADFC78EB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9504F48F-5522-4631-9977-41ADFC78EB0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D426406C-03C0-40A8-95DF-2914E6D3B5CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D426406C-03C0-40A8-95DF-2914E6D3B5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D426406C-03C0-40A8-95DF-2914E6D3B5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D426406C-03C0-40A8-95DF-2914E6D3B5CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

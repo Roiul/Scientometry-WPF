@@ -10,6 +10,7 @@
         <Button x:Name="viewPubButton" Content="Vizualizare Publicatii" HorizontalAlignment="Center" Margin="0,31,0,0" VerticalAlignment="Top" Height="87" Width="244" Click="viewPubButton_Click"/>
         <Button x:Name="newPubButton" Content="Adaugare Publicatie Noua" HorizontalAlignment="Center" VerticalAlignment="Center" Height="94" Width="243" Click="newPubButton_Click"/>
         <Button x:Name="exitButton" Content="Exit" HorizontalAlignment="Left" Margin="659,352,0,0" VerticalAlignment="Top" Height="36" Width="92" Click="exitButton_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="68,364,0,0" VerticalAlignment="Top" Height="38" Width="91" Click="Button_Click"/>
 
     </Grid>
 </UserControl>

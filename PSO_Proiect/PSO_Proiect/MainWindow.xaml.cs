@@ -19,46 +19,36 @@ namespace PSO_Proiect
     {
         public appDBDataContext appDB=new appDBDataContext();
 
-        startWindow startW=new startWindow();
         viewPubsWindow viewPubsW = new viewPubsWindow();
         addPubWindow addPubW = new addPubWindow();
         public MainWindow()
         {
             InitializeComponent();
 
-            this.masterGrid.Children.Add(startW);
+            this.masterGrid.Children.Add(viewPubsW);
             this.actionMenu();
-        }
-        public void mainMenu()
-        {
-            this.masterGrid.Children.Clear();
-            this.masterGrid.Children.Add(startW);
         }
         public void addNewPub()
         {
             this.masterGrid.Children.Clear();
             this.masterGrid.Children.Add(addPubW);
         }
-        public void viewPubs()
-        {
-            this.masterGrid.Children.Clear();
-            this.masterGrid.Children.Add(viewPubsW);
-        }
         public void closeApp()
         {
             this.Close();
         }
 
-
+        public void viewPubs()
+        {
+            this.masterGrid.Children.Clear();
+            this.masterGrid.Children.Add(viewPubsW);
+        }
         public void actionMenu()
         {
-            startW.addButtonAction += addNewPub;
-            startW.viewPubsButtonAction += viewPubs;
-            startW.exitButtonAction += closeApp;
+            viewPubsW.addButtonAction += addNewPub;
+            viewPubsW.exitButtonAction += closeApp;
 
-            viewPubsW.backFromPubsButtonAction += mainMenu;
-
-            addPubW.backFromPubsButtonAction += mainMenu;
+            addPubW.backFromPubsButtonAction += viewPubs;
         }
     }
 }

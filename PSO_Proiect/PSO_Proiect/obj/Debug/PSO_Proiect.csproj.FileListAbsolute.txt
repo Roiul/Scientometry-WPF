@@ -30,7 +30,6 @@ C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\o
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\addPubWindow.g.cs
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\MainWindow.g.cs
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\pubDetailsWindow.g.cs
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\startWindow.g.cs
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\viewPubsWindow.g.cs
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\App.g.cs
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect_MarkupCompile.cache
@@ -38,7 +37,6 @@ C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\o
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\addPubWindow.baml
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\MainWindow.baml
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\pubDetailsWindow.baml
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\startWindow.baml
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\viewPubsWindow.baml
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.g.resources
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.Properties.Resources.resources

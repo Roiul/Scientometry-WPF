@@ -1,5 +1,8 @@
-﻿using System;
+﻿using BibtexIntroduction;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +23,42 @@ namespace PSO_Proiect
     /// </summary>
     public partial class viewPubsWindow : UserControl
     {
-        public Action backFromPubsButtonAction;
+        public Action viewPubsButtonAction;
+        public Action addButtonAction;
+        public Action exitButtonAction;
         public viewPubsWindow()
         {
             InitializeComponent();
         }
 
-        private void backFromPubsButton_Click(object sender, RoutedEventArgs e)
+        private void exitButton_Click(object sender, RoutedEventArgs e)
         {
-            this.backFromPubsButtonAction();
+            this.exitButtonAction();
+        }
+
+        private void BibTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+
+            if (openFileDialog.CheckFileExists)
+                return;
+            string fileName = openFileDialog.FileName;
+            string content = File.ReadAllText(fileName);
+
+            BibtexFile file = BibtexIntroduction.BibtexImporter.FromString(content);
+
+            Console.WriteLine(file.Entries.Count);
+        }
+
+        private void ManualButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.addButtonAction();
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

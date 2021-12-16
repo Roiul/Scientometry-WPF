@@ -28,6 +28,7 @@ namespace PSO_Proiect
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             var newAfilliation=new Afilieri { Nume=nameBox.Text};
+
             dataContext.Afilieris.InsertOnSubmit(newAfilliation);
             dataContext.SubmitChanges();
 

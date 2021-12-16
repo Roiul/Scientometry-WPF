@@ -12,6 +12,5 @@
         <TextBlock HorizontalAlignment="Left" Margin="39,52,0,0" TextWrapping="Wrap" Text="Nume" VerticalAlignment="Top"/>
         <Button x:Name="addButton" Content="Adauga&#xD;&#xA;" HorizontalAlignment="Left" Margin="57,83,0,0" VerticalAlignment="Top" Height="28" Width="79" Click="addButton_Click"/>
         <Button x:Name="exitButton" Content="Renunta" HorizontalAlignment="Left" Margin="156,83,0,0" VerticalAlignment="Top" Height="28" Width="79" Click="exitButton_Click"/>
-
     </Grid>
 </Window>

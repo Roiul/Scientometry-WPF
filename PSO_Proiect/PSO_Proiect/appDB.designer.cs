@@ -51,6 +51,9 @@ namespace PSO_Proiect
     partial void InsertDetalii(Detalii instance);
     partial void UpdateDetalii(Detalii instance);
     partial void DeleteDetalii(Detalii instance);
+    partial void InsertDOI_Citari(DOI_Citari instance);
+    partial void UpdateDOI_Citari(DOI_Citari instance);
+    partial void DeleteDOI_Citari(DOI_Citari instance);
     partial void InsertModPrezentare(ModPrezentare instance);
     partial void UpdateModPrezentare(ModPrezentare instance);
     partial void DeleteModPrezentare(ModPrezentare instance);
@@ -1193,12 +1196,32 @@ namespace PSO_Proiect
 	public partial class Autori_Articole
 	{
 		
+		private int _ID;
+		
 		private int _IDAutor;
 		
 		private int _IDArticol;
 		
+		private System.Data.Linq.Binary _TipAutor;
+		
 		public Autori_Articole()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDAutor", DbType="Int NOT NULL")]
@@ -1232,6 +1255,22 @@ namespace PSO_Proiect
 				}
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipAutor", DbType="Binary(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary TipAutor
+		{
+			get
+			{
+				return this._TipAutor;
+			}
+			set
+			{
+				if ((this._TipAutor != value))
+				{
+					this._TipAutor = value;
+				}
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Citari")]
@@ -1249,6 +1288,8 @@ namespace PSO_Proiect
 		private int _ISI;
 		
 		private int _BDI;
+		
+		private EntitySet<DOI_Citari> _DOI_Citaris;
 		
 		private EntityRef<Articole> _Articole;
 		
@@ -1270,6 +1311,7 @@ namespace PSO_Proiect
 		
 		public Citari()
 		{
+			this._DOI_Citaris = new EntitySet<DOI_Citari>(new Action<DOI_Citari>(this.attach_DOI_Citaris), new Action<DOI_Citari>(this.detach_DOI_Citaris));
 			this._Articole = default(EntityRef<Articole>);
 			OnCreated();
 		}
@@ -1378,6 +1420,19 @@ namespace PSO_Proiect
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Citari_DOI_Citari", Storage="_DOI_Citaris", ThisKey="IDCitare", OtherKey="IDCitare")]
+		public EntitySet<DOI_Citari> DOI_Citaris
+		{
+			get
+			{
+				return this._DOI_Citaris;
+			}
+			set
+			{
+				this._DOI_Citaris.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Articole_Citari", Storage="_Articole", ThisKey="IDArticol", OtherKey="IDArticol", IsForeignKey=true)]
 		public Articole Articole
 		{
@@ -1430,6 +1485,18 @@ namespace PSO_Proiect
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_DOI_Citaris(DOI_Citari entity)
+		{
+			this.SendPropertyChanging();
+			entity.Citari = this;
+		}
+		
+		private void detach_DOI_Citaris(DOI_Citari entity)
+		{
+			this.SendPropertyChanging();
+			entity.Citari = null;
 		}
 	}
 	
@@ -1620,15 +1687,55 @@ namespace PSO_Proiect
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DOI_Citari")]
-	public partial class DOI_Citari
+	public partial class DOI_Citari : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
 		
 		private int _IDCitare;
 		
 		private string _DOI;
 		
+		private EntityRef<Citari> _Citari;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnIDCitareChanging(int value);
+    partial void OnIDCitareChanged();
+    partial void OnDOIChanging(string value);
+    partial void OnDOIChanged();
+    #endregion
+		
 		public DOI_Citari()
 		{
+			this._Citari = default(EntityRef<Citari>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDCitare", DbType="Int NOT NULL")]
@@ -1642,7 +1749,15 @@ namespace PSO_Proiect
 			{
 				if ((this._IDCitare != value))
 				{
+					if (this._Citari.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIDCitareChanging(value);
+					this.SendPropertyChanging();
 					this._IDCitare = value;
+					this.SendPropertyChanged("IDCitare");
+					this.OnIDCitareChanged();
 				}
 			}
 		}
@@ -1658,8 +1773,66 @@ namespace PSO_Proiect
 			{
 				if ((this._DOI != value))
 				{
+					this.OnDOIChanging(value);
+					this.SendPropertyChanging();
 					this._DOI = value;
+					this.SendPropertyChanged("DOI");
+					this.OnDOIChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Citari_DOI_Citari", Storage="_Citari", ThisKey="IDCitare", OtherKey="IDCitare", IsForeignKey=true)]
+		public Citari Citari
+		{
+			get
+			{
+				return this._Citari.Entity;
+			}
+			set
+			{
+				Citari previousValue = this._Citari.Entity;
+				if (((previousValue != value) 
+							|| (this._Citari.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Citari.Entity = null;
+						previousValue.DOI_Citaris.Remove(this);
+					}
+					this._Citari.Entity = value;
+					if ((value != null))
+					{
+						value.DOI_Citaris.Add(this);
+						this._IDCitare = value.IDCitare;
+					}
+					else
+					{
+						this._IDCitare = default(int);
+					}
+					this.SendPropertyChanged("Citari");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

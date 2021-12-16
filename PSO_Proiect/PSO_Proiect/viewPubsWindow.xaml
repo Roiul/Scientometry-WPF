@@ -5,23 +5,109 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PSO_Proiect"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DataGrid x:Name="pubsDataGrid" Margin="0,57,92,0"/>
-        <ComboBox HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBlock HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Text="Filtru_1" VerticalAlignment="Top" Width="154" Height="24" FontSize="15"/>
-        <ComboBox HorizontalAlignment="Left" Margin="159,24,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="159,-2,0,0" TextWrapping="Wrap" Text="Filtru_2" VerticalAlignment="Top" Width="154" Height="24" FontSize="15"/>
-        <ComboBox HorizontalAlignment="Left" Margin="318,24,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="318,-2,0,0" TextWrapping="Wrap" Text="Filtru_3" VerticalAlignment="Top" Width="154" Height="24" FontSize="15"/>
-        <ComboBox HorizontalAlignment="Left" Margin="477,24,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="477,-2,0,0" TextWrapping="Wrap" Text="Filtru_4" VerticalAlignment="Top" Width="154" Height="24" FontSize="15"/>
-        <ComboBox HorizontalAlignment="Left" Margin="636,24,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Margin="636,-2,0,0" TextWrapping="Wrap" Text="Filtru_5" VerticalAlignment="Top" Width="154" Height="24" FontSize="15"/>
-        <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Left" Margin="713,57,0,0" VerticalAlignment="Top" Width="77" Height="39" Click="ResetButton_Click"/>
-        <Button x:Name="ManualButton" Content="Adaugare&#xD;&#xA;manuală" HorizontalAlignment="Left" Margin="713,101,0,0" VerticalAlignment="Top" Width="77" Height="39" Click="ManualButton_Click"/>
-        <Button x:Name="BibTextButton" Content="Adăugare&#xD;&#xA;BibText" HorizontalAlignment="Left" Margin="713,145,0,0" VerticalAlignment="Top" Width="77" Height="39" Click="BibTextButton_Click"/>
-        <Button x:Name="exitButton" Content="Exit" HorizontalAlignment="Left" Margin="713,402,0,0" VerticalAlignment="Top" Width="77" Height="38" Click="exitButton_Click"/>
-
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid Background="Gray">
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center">
+            <StackPanel Margin="0,0,5,0"  
+                        VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" 
+                           TextAlignment="Center" 
+                           TextWrapping="Wrap" 
+                           Text="Filtru_1" 
+                           VerticalAlignment="Top"
+                           Width="150" 
+                           Height="24" 
+                           FontSize="15"/>
+                <ComboBox HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Width="150"/>
+            </StackPanel>
+            <StackPanel Margin="0,0,5,0" 
+                        VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" 
+                           TextAlignment="Center" 
+                           TextWrapping="Wrap" 
+                           Text="Filtru_2" 
+                           VerticalAlignment="Top"
+                           Width="150" 
+                           Height="24" 
+                           FontSize="15"/>
+                <ComboBox HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Width="150"/>
+            </StackPanel>
+            <StackPanel Margin="0,0,5,0" 
+                        VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" 
+                           TextAlignment="Center" 
+                           TextWrapping="Wrap" 
+                           Text="Filtru_3" 
+                           VerticalAlignment="Top"
+                           Width="150" 
+                           Height="24" 
+                           FontSize="15"/>
+                <ComboBox HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Width="150"/>
+            </StackPanel>
+            <StackPanel Margin="0,0,5,0" 
+                        VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" 
+                           TextAlignment="Center" 
+                           TextWrapping="Wrap" 
+                           Text="Filtru_4" 
+                           VerticalAlignment="Top"
+                           Width="150" 
+                           Height="24" 
+                           FontSize="15"/>
+                <ComboBox HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Width="150"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" 
+                           TextAlignment="Center" 
+                           TextWrapping="Wrap" 
+                           Text="Filtru_5" 
+                           VerticalAlignment="Top"
+                           Width="150" 
+                           Height="24" 
+                           FontSize="15"/>
+                <ComboBox HorizontalAlignment="Left"
+                          Width="150"/>
+            </StackPanel>
+        </StackPanel>
+        <DataGrid x:Name="pubsDataGrid" 
+                  Margin="15,60,128,15"/>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Right"
+                    Margin="0,60,13,15">
+            <Button x:Name="ResetButton" 
+                    Margin="0,0,0,5"
+                    Content="Reset"
+                    Width="100"
+                    Height="40"
+                    Click="ResetButton_Click"/>
+            <Button x:Name="ManualButton" 
+                    Content="Adaugare&#xA;manuală"
+                    Margin="0,0,0,5"
+                    Width="100" 
+                    Height="40" 
+                    Click="ManualButton_Click"/>
+            <Button x:Name="BibTextButton"
+                    Margin="0,0,0,165"
+                    Content="Adăugare&#xA;BibText"
+                    Width="100"
+                    Height="40"
+                    Click="BibTextButton_Click"/>
+            <Button x:Name="exitButton"
+                    Content="Exit" 
+                    Width="100"
+                    Height="40"
+                    Click="exitButton_Click"/>
+        </StackPanel>
     </Grid>
 </UserControl>

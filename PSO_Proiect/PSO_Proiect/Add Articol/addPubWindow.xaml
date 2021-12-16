@@ -1,0 +1,287 @@
+﻿<UserControl x:Class="PSO_Proiect.addPubWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PSO_Proiect"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" 
+             d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer Background="#FFA4A49F">
+            <StackPanel>
+                <TextBlock Text="Adăugare articol" 
+                           FontWeight="ExtraBlack"
+                           Margin="0,15,0,0" 
+                           FontSize="45" 
+                           HorizontalAlignment="Center"/>
+                <StackPanel x:Name="pubPanel"
+                            Margin="0,15,0,0"
+                            VerticalAlignment="Top"
+                            Background="Gray" >
+                    <TextBlock Text="Detalii publicatie" 
+                               FontSize="17" 
+                               FontWeight="Black"
+                               HorizontalAlignment="Center" 
+                               Margin="15,0,0,3"/>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Text="Nume"
+                                   Width="139"
+                                   Height="21" 
+                                   FontSize="15"/>
+                        <TextBox x:Name="pubNameTextBox"
+                                 TextWrapping="Wrap"
+                                 Width="599" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center" 
+                                   TextWrapping="Wrap" 
+                                   Text="WOS"
+                                   Width="139"
+                                   Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="editorTextBox" 
+                                 TextWrapping="Wrap"
+                                 Width="599" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0,0,0,7">
+                        <TextBlock TextAlignment="Center" 
+                                   TextWrapping="Wrap" 
+                                   Text="Tip"
+                                   Width="139"
+                                   Height="21"
+                                   FontSize="15"/>
+                        <ComboBox x:Name="typeComboBox"
+                                  Width="599"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel x:Name="articolPanel" 
+                            VerticalAlignment="Top"
+                            Background="#FFA4A49F">
+                    <TextBlock Text="Articol"
+                               FontSize="17" 
+                               FontWeight="Black"
+                               HorizontalAlignment="Center"
+                               Margin="15,0,0,3"/>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center"
+                                   TextWrapping="Wrap" 
+                                   Text="Nume" 
+                                   Width="139" Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="nameTextBox" 
+                                 TextWrapping="Wrap" 
+                                 Width="599" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center" 
+                                   TextWrapping="Wrap" 
+                                   Text="WOS" 
+                                   Width="139"
+                                   Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="wosTextBox" 
+                                 TextWrapping="Wrap"
+                                 Width="599"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center" 
+                                   TextWrapping="Wrap" 
+                                   Text="DOI" 
+                                   Width="139" 
+                                   Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="doiTextBox"
+                                 TextWrapping="Wrap"
+                                 Width="599"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center" 
+                                   TextWrapping="Wrap" 
+                                   Text="Factor impact"
+                                   Width="139" 
+                                   Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="impactFactorTextBox" 
+                                 TextWrapping="Wrap"
+                                 Width="599"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center" 
+                                   TextWrapping="Wrap"
+                                   Text="Mod prezentare"
+                                   Width="139"
+                                   Height="21"
+                                   FontSize="15"/>
+                        <ComboBox x:Name="modeComboBox"
+                                  Width="599"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel x:Name="authorPanel" 
+                            Margin="0,0,0,0" 
+                            VerticalAlignment="Top"
+                            Background="Gray">
+                    <TextBlock Text="Autori" 
+                               FontSize="17"
+                               FontWeight="Black" 
+                               HorizontalAlignment="Center"
+                               Margin="15,0,0,3"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Text="Autor"
+                                   Width="139"
+                                   Height="21"
+                                   FontSize="15"/>
+                        <ComboBox x:Name="authorComboBox"
+                                  Width="599"
+                                  SelectionChanged="authorComboBox_SelectionChanged"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center"
+                                   VerticalAlignment="Top" 
+                                   TextWrapping="Wrap"
+                                   Text="Lista autori" 
+                                   Width="139" 
+                                   Height="21"
+                                   FontSize="15"/>
+                        <DataGrid x:Name="authorsDataGrid" 
+                                  Height="150"
+                                  Width="599"
+                                  CanUserAddRows="False">
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem x:Name="deleteRecord"
+                                              Header="Delete"
+                                              Click="deleteRecord_Click"/>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Principal">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn x:Name="lname" 
+                                                    Header="Nume" 
+                                                    Binding="{Binding lName}" 
+                                                    Width="150"
+                                                    CanUserResize="False"
+                                                    IsReadOnly="True"/>
+                                <DataGridTextColumn x:Name="fname" 
+                                                    Header="Prenume"
+                                                    Binding="{Binding fName}" 
+                                                    Width="160"
+                                                    CanUserResize="False"
+                                                    IsReadOnly="True"/>
+                                <DataGridTextColumn x:Name="UEFID" 
+                                                    Header="UEFID" 
+                                                    Binding="{Binding uefid}"
+                                                    Width="70" 
+                                                    CanUserResize="False"
+                                                    IsReadOnly="True"/>
+                                <DataGridTextColumn x:Name="Link" 
+                                                    Header="Link"
+                                                    Binding="{Binding link}" 
+                                                    Width="240" 
+                                                    CanUserResize="False"
+                                                    IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel x:Name="articolDetailsPanel" 
+                            VerticalAlignment="Top"
+                            Background="#FFA4A49F">
+                    <TextBlock Text="Detalii articol"
+                               FontSize="17"
+                               FontWeight="Black"
+                               HorizontalAlignment="Center" 
+                               Margin="15,0,0,3"/>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center"
+                                   TextWrapping="Wrap" 
+                                   Text="Anul" 
+                                   Width="139"
+                                   Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="yearTextBox"
+                                 TextWrapping="Wrap" 
+                                 Width="599" />
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal" 
+                                 Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center"
+                                   TextWrapping="Wrap" 
+                                   Text="Pagina" 
+                                   Width="139" 
+                                   Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="pageTextBox" 
+                                 TextWrapping="Wrap"
+                                 Width="599" />
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal"
+                                 Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center"
+                                   TextWrapping="Wrap" 
+                                   Text="Volum" 
+                                   Width="139"
+                                   Height="21" 
+                                   FontSize="15"/>
+                        <TextBox x:Name="volumeTextBox"
+                                 TextWrapping="Wrap" 
+                                 Width="599"/>
+                    </StackPanel>
+                    <StackPanel  Orientation="Horizontal"
+                                 Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center" 
+                                   TextWrapping="Wrap"
+                                   Text="Numar"
+                                   Width="139"
+                                   Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="numberTextBox"
+                                 TextWrapping="Wrap"
+                                 Width="599"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,10,0,10"
+                            HorizontalAlignment="Center">
+                    <Button x:Name="backToMainButton" 
+                            Margin="0,0,20,0" 
+                            Content="Înapoi" 
+                            HorizontalAlignment="Center"
+                            Height="27"
+                            Width="206"
+                            Click="backToMainButton_Click"/>
+                    <Button x:Name="addArticolButton"
+                            Margin="20,0,0,0" 
+                            Content="Adaugă" 
+                            HorizontalAlignment="Center"
+                            Height="27"
+                            Width="206"
+                            Click="addArticolButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

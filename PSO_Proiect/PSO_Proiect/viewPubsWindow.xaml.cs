@@ -2,6 +2,8 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -58,6 +60,26 @@ namespace PSO_Proiect
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //SqlConnection con = new SqlConnection("Server=(local);Database=APP_Scientometrie;Trusted_Connection=Yes;");
+            //SqlCommand cmd = new SqlCommand("SELECT An FROM Detalii",con);
+            //con.Open();
+            ////SqlDataReader reader=cmd.ExecuteReader();
+            ////while(reader.Read())
+            ////{
+            ////    AnComboBox.Items.Add(reader["FR"].ToString());
+            ////}
+            ////reader.Close();
+            //SqlDataAdapter adapter=new SqlDataAdapter(cmd);
+            //DataTable dt = new DataTable();
+            //adapter.Fill(dt);
+            //AnComboBox.ItemsSource = dt.DefaultView;
+            //cmd.Dispose();
+            //con.Close();
 
         }
     }

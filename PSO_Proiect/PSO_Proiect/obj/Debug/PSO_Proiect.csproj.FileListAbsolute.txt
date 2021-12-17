@@ -27,16 +27,12 @@ C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\b
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\PSO_Proiect.pdb
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.AssemblyReference.cache
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.SuggestedBindingRedirects.cache
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\addPubWindow.g.cs
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\MainWindow.g.cs
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\pubDetailsWindow.g.cs
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\viewPubsWindow.g.cs
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\App.g.cs
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect_MarkupCompile.cache
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect_MarkupCompile.lref
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\addPubWindow.baml
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\MainWindow.baml
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\pubDetailsWindow.baml
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\viewPubsWindow.baml
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.g.resources
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.Properties.Resources.resources
@@ -44,10 +40,6 @@ C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\o
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.CoreCompileInputs.cache
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.exe
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.pdb
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\affiliationWindow.g.cs
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\authorWindow.g.cs
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\affiliationWindow.baml
-C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\authorWindow.baml
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\NUnit3.TestAdapter.dll
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\NUnit3.TestAdapter.pdb
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\nunit.engine.dll
@@ -60,41 +52,9 @@ C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\b
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\BibtexIntroduction.exe.config
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\nunit.framework.xml
 C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.CopyComplete
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\NUnit3.TestAdapter.dll
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\NUnit3.TestAdapter.pdb
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\nunit.engine.dll
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\nunit.engine.api.dll
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\nunit.engine.core.dll
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\testcentric.engine.metadata.dll
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\PSO_Proiect.exe.config
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\PSO_Proiect.exe
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\PSO_Proiect.pdb
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\BibtexIntroduction.exe
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\nunit.framework.dll
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\BibtexIntroduction.pdb
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\BibtexIntroduction.exe.config
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\bin\Debug\nunit.framework.xml
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.AssemblyReference.cache
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.SuggestedBindingRedirects.cache
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\addPubWindow.g.cs
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\affiliationWindow.g.cs
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\authorWindow.g.cs
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\MainWindow.g.cs
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\pubDetailsWindow.g.cs
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\viewPubsWindow.g.cs
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\App.g.cs
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect_MarkupCompile.cache
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect_MarkupCompile.lref
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\addPubWindow.baml
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\affiliationWindow.baml
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\authorWindow.baml
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\MainWindow.baml
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\pubDetailsWindow.baml
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\viewPubsWindow.baml
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.g.resources
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.Properties.Resources.resources
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.GenerateResource.cache
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.CoreCompileInputs.cache
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.CopyComplete
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.exe
-D:\MaterialeanulIII\Aplicatii Baze de Date\Git Repo\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.pdb
+C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\Add Articol\Windows\affiliationWindow.g.cs
+C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\Add Articol\Windows\authorWindow.g.cs
+C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\Add Articol\Windows\affiliationWindow.baml
+C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\Add Articol\Windows\authorWindow.baml
+C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\Add Articol\addPubWindow.g.cs
+C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\Add Articol\addPubWindow.baml

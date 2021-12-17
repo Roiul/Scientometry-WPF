@@ -63,10 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="addPubWindow.xaml.cs">
+    <Compile Include="Add Articol\addPubWindow.xaml.cs">
       <DependentUpon>addPubWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="affiliationWindow.xaml.cs">
+    <Compile Include="Add Articol\Windows\affiliationWindow.xaml.cs">
       <DependentUpon>affiliationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="appDB.designer.cs">
@@ -74,24 +74,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>appDB.dbml</DependentUpon>
     </Compile>
-    <Compile Include="authorWindow.xaml.cs">
+    <Compile Include="Add Articol\Windows\authorWindow.xaml.cs">
       <DependentUpon>authorWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pubDetailsWindow.xaml.cs">
-      <DependentUpon>pubDetailsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="viewPubsWindow.xaml.cs">
       <DependentUpon>viewPubsWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="addPubWindow.xaml">
+    <Page Include="Add Articol\addPubWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="affiliationWindow.xaml">
+    <Page Include="Add Articol\Windows\affiliationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="authorWindow.xaml">
+    <Page Include="Add Articol\Windows\authorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,10 +104,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="pubDetailsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="viewPubsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

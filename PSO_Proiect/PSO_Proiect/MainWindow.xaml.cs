@@ -33,6 +33,12 @@ namespace PSO_Proiect
             this.masterGrid.Children.Clear();
             this.masterGrid.Children.Add(addPubW);
         }
+        public void addNewPubFromBibTex(BibtexIntroduction.BibtexFile file)
+        {
+            this.masterGrid.Children.Clear();
+            this.masterGrid.Children.Add(addPubW);
+            addPubW.insertFromBibTex(file);
+        }
         public void closeApp()
         {
             this.Close();
@@ -47,6 +53,7 @@ namespace PSO_Proiect
         {
             viewPubsW.addButtonAction += addNewPub;
             viewPubsW.exitButtonAction += closeApp;
+            viewPubsW.insertFromBib += addNewPubFromBibTex;
 
             addPubW.backFromPubsButtonAction += viewPubs;
         }

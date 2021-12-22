@@ -40,7 +40,7 @@
                                 Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center" 
                                    TextWrapping="Wrap" 
-                                   Text="WOS"
+                                   Text="Editor"
                                    Width="139"
                                    Height="21"
                                    FontSize="15"/>
@@ -113,6 +113,18 @@
                                    Height="21"
                                    FontSize="15"/>
                         <TextBox x:Name="impactFactorTextBox" 
+                                 TextWrapping="Wrap"
+                                 Width="599"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center" 
+                                   TextWrapping="Wrap" 
+                                   Text="Jurnal"
+                                   Width="139" 
+                                   Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="jurnalTextBox" 
                                  TextWrapping="Wrap"
                                  Width="599"/>
                     </StackPanel>

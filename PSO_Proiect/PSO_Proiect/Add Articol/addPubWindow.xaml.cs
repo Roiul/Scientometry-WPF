@@ -32,6 +32,82 @@ namespace PSO_Proiect
             initializeUCComponents();
         }
 
+        public void insertFromBibTex(BibtexIntroduction.BibtexFile file)
+        {
+            for (int variable = 0; variable < file.Entries.Count; variable++)
+            {
+                for (int counter = 0; counter < file.Entries.ToList()[variable].Tags.Count; counter++)
+                {
+                    if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "author")
+                    {
+                        for(int j=0;j< file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',').Count();j++)
+                        {
+                            authorD author=new authorD();
+                            author.fName = file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',');
+
+
+
+                            authorsDataGrid.Items.Add(author);
+                            Authors.Add(author);
+                        }
+
+                        nameTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                        nameTextBox.IsReadOnly = true;
+                        continue;
+                    }
+                    if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "title")
+                    {
+                        nameTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                        nameTextBox.IsReadOnly = true;
+                        continue;
+                    }
+                    //if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "author")
+                    //{
+                    //    file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',').Count();
+                    //    //
+                    //}
+                    //keep authors for later on, after I added IDArticol
+                    if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "publisher")
+                    {
+                        pubNameTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                        pubNameTextBox.IsReadOnly=true;
+                        continue;
+                    }
+                    if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "journal")
+                    {
+                        jurnalTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                        jurnalTextBox.IsReadOnly = true;
+                        continue;
+                    }
+                    if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "year")
+                    {
+                        yearTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                        yearTextBox.IsReadOnly=true;
+                        continue;
+                    }
+                    if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "volume")
+                    {
+                        volumeTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                        volumeTextBox.IsReadOnly=true;
+                        continue;
+                    }
+                    if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "pages")
+                    {
+                        pageTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                        pageTextBox.IsReadOnly=true;
+                        continue;
+                    }
+                    if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "number")
+                    {
+                        numberTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                        numberTextBox.IsReadOnly = true;
+                        continue;
+                    }
+                }
+                continue;
+            }
+        }
+
         private int publicatiiTableInsert()
         {
             var type = (from item in db.Tip_Publicaties

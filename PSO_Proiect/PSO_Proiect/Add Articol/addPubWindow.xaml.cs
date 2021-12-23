@@ -43,9 +43,7 @@ namespace PSO_Proiect
                         for(int j=0;j< file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',').Count();j++)
                         {
                             authorD author=new authorD();
-                            author.fName = file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',');
-
-
+                            author.fName = file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',').ToList()[j];
 
                             authorsDataGrid.Items.Add(author);
                             Authors.Add(author);
@@ -61,16 +59,16 @@ namespace PSO_Proiect
                         nameTextBox.IsReadOnly = true;
                         continue;
                     }
-                    //if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "author")
-                    //{
-                    //    file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',').Count();
-                    //    //
-                    //}
-                    //keep authors for later on, after I added IDArticol
                     if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "publisher")
                     {
                         pubNameTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
                         pubNameTextBox.IsReadOnly=true;
+                        continue;
+                    }
+                    if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "editor")
+                    {
+                        editorTextBox.Text = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                        editorTextBox.IsReadOnly = true;
                         continue;
                     }
                     if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "journal")

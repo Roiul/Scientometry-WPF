@@ -45,6 +45,9 @@ namespace PSO_Proiect
     partial void InsertAutori(Autori instance);
     partial void UpdateAutori(Autori instance);
     partial void DeleteAutori(Autori instance);
+    partial void InsertAutori_Articole(Autori_Articole instance);
+    partial void UpdateAutori_Articole(Autori_Articole instance);
+    partial void DeleteAutori_Articole(Autori_Articole instance);
     partial void InsertCitari(Citari instance);
     partial void UpdateCitari(Citari instance);
     partial void DeleteCitari(Citari instance);
@@ -433,6 +436,10 @@ namespace PSO_Proiect
 		
 		private int _IDDetalii;
 		
+		private string _Jurnal;
+		
+		private EntitySet<Autori_Articole> _Autori_Articoles;
+		
 		private EntitySet<Citari> _Citaris;
 		
 		private EntityRef<Detalii> _Detalii;
@@ -463,10 +470,13 @@ namespace PSO_Proiect
     partial void OnDOIChanged();
     partial void OnIDDetaliiChanging(int value);
     partial void OnIDDetaliiChanged();
+    partial void OnJurnalChanging(string value);
+    partial void OnJurnalChanged();
     #endregion
 		
 		public Articole()
 		{
+			this._Autori_Articoles = new EntitySet<Autori_Articole>(new Action<Autori_Articole>(this.attach_Autori_Articoles), new Action<Autori_Articole>(this.detach_Autori_Articoles));
 			this._Citaris = new EntitySet<Citari>(new Action<Citari>(this.attach_Citaris), new Action<Citari>(this.detach_Citaris));
 			this._Detalii = default(EntityRef<Detalii>);
 			this._ModPrezentare = default(EntityRef<ModPrezentare>);
@@ -602,7 +612,7 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WOS", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WOS", DbType="NVarChar(50)")]
 		public string WOS
 		{
 			get
@@ -622,7 +632,7 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DOI", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DOI", DbType="NVarChar(50)")]
 		public string DOI
 		{
 			get
@@ -663,6 +673,39 @@ namespace PSO_Proiect
 					this.SendPropertyChanged("IDDetalii");
 					this.OnIDDetaliiChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Jurnal", DbType="NVarChar(200)")]
+		public string Jurnal
+		{
+			get
+			{
+				return this._Jurnal;
+			}
+			set
+			{
+				if ((this._Jurnal != value))
+				{
+					this.OnJurnalChanging(value);
+					this.SendPropertyChanging();
+					this._Jurnal = value;
+					this.SendPropertyChanged("Jurnal");
+					this.OnJurnalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Articole_Autori_Articole", Storage="_Autori_Articoles", ThisKey="IDArticol", OtherKey="IDArticol")]
+		public EntitySet<Autori_Articole> Autori_Articoles
+		{
+			get
+			{
+				return this._Autori_Articoles;
+			}
+			set
+			{
+				this._Autori_Articoles.Assign(value);
 			}
 		}
 		
@@ -799,6 +842,18 @@ namespace PSO_Proiect
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Autori_Articoles(Autori_Articole entity)
+		{
+			this.SendPropertyChanging();
+			entity.Articole = this;
+		}
+		
+		private void detach_Autori_Articoles(Autori_Articole entity)
+		{
+			this.SendPropertyChanging();
+			entity.Articole = null;
 		}
 		
 		private void attach_Citaris(Citari entity)
@@ -1024,6 +1079,8 @@ namespace PSO_Proiect
 		
 		private EntitySet<Autor_Afiliere> _Autor_Afilieres;
 		
+		private EntitySet<Autori_Articole> _Autori_Articoles;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1043,6 +1100,7 @@ namespace PSO_Proiect
 		public Autori()
 		{
 			this._Autor_Afilieres = new EntitySet<Autor_Afiliere>(new Action<Autor_Afiliere>(this.attach_Autor_Afilieres), new Action<Autor_Afiliere>(this.detach_Autor_Afilieres));
+			this._Autori_Articoles = new EntitySet<Autori_Articole>(new Action<Autori_Articole>(this.attach_Autori_Articoles), new Action<Autori_Articole>(this.detach_Autori_Articoles));
 			OnCreated();
 		}
 		
@@ -1159,6 +1217,19 @@ namespace PSO_Proiect
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autori_Autori_Articole", Storage="_Autori_Articoles", ThisKey="IDAutor", OtherKey="IDAutor")]
+		public EntitySet<Autori_Articole> Autori_Articoles
+		{
+			get
+			{
+				return this._Autori_Articoles;
+			}
+			set
+			{
+				this._Autori_Articoles.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1190,11 +1261,25 @@ namespace PSO_Proiect
 			this.SendPropertyChanging();
 			entity.Autori = null;
 		}
+		
+		private void attach_Autori_Articoles(Autori_Articole entity)
+		{
+			this.SendPropertyChanging();
+			entity.Autori = this;
+		}
+		
+		private void detach_Autori_Articoles(Autori_Articole entity)
+		{
+			this.SendPropertyChanging();
+			entity.Autori = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Autori_Articole")]
-	public partial class Autori_Articole
+	public partial class Autori_Articole : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _ID;
 		
@@ -1202,13 +1287,34 @@ namespace PSO_Proiect
 		
 		private int _IDArticol;
 		
-		private System.Data.Linq.Binary _TipAutor;
+		private int _TipAutor;
+		
+		private EntityRef<Articole> _Articole;
+		
+		private EntityRef<Autori> _Autori;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnIDAutorChanging(int value);
+    partial void OnIDAutorChanged();
+    partial void OnIDArticolChanging(int value);
+    partial void OnIDArticolChanged();
+    partial void OnTipAutorChanging(int value);
+    partial void OnTipAutorChanged();
+    #endregion
 		
 		public Autori_Articole()
 		{
+			this._Articole = default(EntityRef<Articole>);
+			this._Autori = default(EntityRef<Autori>);
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int ID
 		{
 			get
@@ -1219,7 +1325,11 @@ namespace PSO_Proiect
 			{
 				if ((this._ID != value))
 				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
 					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
 				}
 			}
 		}
@@ -1235,7 +1345,15 @@ namespace PSO_Proiect
 			{
 				if ((this._IDAutor != value))
 				{
+					if (this._Autori.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIDAutorChanging(value);
+					this.SendPropertyChanging();
 					this._IDAutor = value;
+					this.SendPropertyChanged("IDAutor");
+					this.OnIDAutorChanged();
 				}
 			}
 		}
@@ -1251,13 +1369,21 @@ namespace PSO_Proiect
 			{
 				if ((this._IDArticol != value))
 				{
+					if (this._Articole.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIDArticolChanging(value);
+					this.SendPropertyChanging();
 					this._IDArticol = value;
+					this.SendPropertyChanged("IDArticol");
+					this.OnIDArticolChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipAutor", DbType="Binary(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary TipAutor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipAutor", DbType="Int NOT NULL")]
+		public int TipAutor
 		{
 			get
 			{
@@ -1267,8 +1393,100 @@ namespace PSO_Proiect
 			{
 				if ((this._TipAutor != value))
 				{
+					this.OnTipAutorChanging(value);
+					this.SendPropertyChanging();
 					this._TipAutor = value;
+					this.SendPropertyChanged("TipAutor");
+					this.OnTipAutorChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Articole_Autori_Articole", Storage="_Articole", ThisKey="IDArticol", OtherKey="IDArticol", IsForeignKey=true)]
+		public Articole Articole
+		{
+			get
+			{
+				return this._Articole.Entity;
+			}
+			set
+			{
+				Articole previousValue = this._Articole.Entity;
+				if (((previousValue != value) 
+							|| (this._Articole.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Articole.Entity = null;
+						previousValue.Autori_Articoles.Remove(this);
+					}
+					this._Articole.Entity = value;
+					if ((value != null))
+					{
+						value.Autori_Articoles.Add(this);
+						this._IDArticol = value.IDArticol;
+					}
+					else
+					{
+						this._IDArticol = default(int);
+					}
+					this.SendPropertyChanged("Articole");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autori_Autori_Articole", Storage="_Autori", ThisKey="IDAutor", OtherKey="IDAutor", IsForeignKey=true)]
+		public Autori Autori
+		{
+			get
+			{
+				return this._Autori.Entity;
+			}
+			set
+			{
+				Autori previousValue = this._Autori.Entity;
+				if (((previousValue != value) 
+							|| (this._Autori.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Autori.Entity = null;
+						previousValue.Autori_Articoles.Remove(this);
+					}
+					this._Autori.Entity = value;
+					if ((value != null))
+					{
+						value.Autori_Articoles.Add(this);
+						this._IDAutor = value.IDAutor;
+					}
+					else
+					{
+						this._IDAutor = default(int);
+					}
+					this.SendPropertyChanged("Autori");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -1510,7 +1728,7 @@ namespace PSO_Proiect
 		
 		private System.Nullable<int> _An;
 		
-		private System.Nullable<int> _Pagina;
+		private string _Pagina;
 		
 		private string _Volum;
 		
@@ -1526,7 +1744,7 @@ namespace PSO_Proiect
     partial void OnIDDetaliiChanged();
     partial void OnAnChanging(System.Nullable<int> value);
     partial void OnAnChanged();
-    partial void OnPaginaChanging(System.Nullable<int> value);
+    partial void OnPaginaChanging(string value);
     partial void OnPaginaChanged();
     partial void OnVolumChanging(string value);
     partial void OnVolumChanged();
@@ -1580,8 +1798,8 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pagina", DbType="Int")]
-		public System.Nullable<int> Pagina
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pagina", DbType="NVarChar(50)")]
+		public string Pagina
 		{
 			get
 			{

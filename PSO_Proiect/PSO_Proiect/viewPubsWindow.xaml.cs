@@ -43,7 +43,7 @@ namespace PSO_Proiect
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
 
-            if (!openFileDialog.CheckFileExists)
+            if (openFileDialog.FileName=="")
                 return;
             string fileName = openFileDialog.FileName;
             string content = File.ReadAllText(fileName);

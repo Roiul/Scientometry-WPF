@@ -43,9 +43,7 @@ namespace PSO_Proiect
                         for(int j=0;j< file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',').Count();j++)
                         {
                             authorD author=new authorD();
-                            author.fName = file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',');
-
-
+                            author.fName = file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(',').ToList()[j];
 
                             authorsDataGrid.Items.Add(author);
                             Authors.Add(author);
@@ -128,7 +126,7 @@ namespace PSO_Proiect
             var newDetalii = new Detalii
             {
                 An = Convert.ToInt32(this.yearTextBox.Text),
-                Pagina = Convert.ToInt32(this.pageTextBox.Text),
+                Pagina = this.pageTextBox.Text,
                 Volum = this.volumeTextBox.Text,
                 Numar = Convert.ToInt32(this.numberTextBox.Text)
             };
@@ -162,7 +160,8 @@ namespace PSO_Proiect
                 var newAutoriArticole = new Autori_Articole
                 {
                     IDArticol = idArticol,
-                    IDAutor = author.idAuthor
+                    IDAutor = author.idAuthor,
+                    TipAutor=Convert.ToInt32(author.IsSelected)
                 };
                 db.Autori_Articoles.InsertOnSubmit(newAutoriArticole);
             }
@@ -221,6 +220,8 @@ namespace PSO_Proiect
                     newAuthor.uefid = (int)newAdded[newAdded.Count - 1].UEFID;
                     newAuthor.link= newAdded[newAdded.Count - 1].Link;
                     newAuthor.idAuthor = newAdded[newAdded.Count - 1].IDAutor;
+                    newAuthor.fromDatabase = true;
+                    authorsDataGrid.Items.Add(newAuthor);
                     Authors.Add(newAuthor);
                 }
             }
@@ -234,6 +235,7 @@ namespace PSO_Proiect
                 newAuthor.uefid = (int)author.UEFID;
                 newAuthor.link = author.Link;
                 newAuthor.idAuthor = author.IDAutor;
+                newAuthor.fromDatabase= true;
                 authorsDataGrid.Items.Add(newAuthor);
                 Authors.Add(newAuthor);
             }
@@ -249,36 +251,66 @@ namespace PSO_Proiect
         {
             if (!verifyData())
                 return;
-
-            int isSeleced = -1;
-            foreach (var author in Authors)
-                if(author.IsSelected==true)
-                    isSeleced++;
-            switch (isSeleced)
-            {
-            case 0:
-                articoleAutoriTableInsert(
-                    articoleTableInsert(
-                        publicatiiTableInsert(),
-                        detaliiTableInsert()
-                    ));
-                break;
-            case -1:
-                MessageBox.Show("Nu ati selectat autorul principal!", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
-                break;
-            default:
-                MessageBox.Show("Ati adaugat mai mult de un autor principal", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
-                break;
-            }
+            articoleAutoriTableInsert(
+                       articoleTableInsert(
+                           publicatiiTableInsert(),
+                           detaliiTableInsert()
+                       ));
+            MessageBox.Show("Articol adaugat cu succes", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+            backFromPubsButtonAction();
         }
 
         private bool verifyData()
         {
+            if (pubNameTextBox.Text == "")
+            {
+                MessageBox.Show("Nu ati adaugat numele editurii!", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            if (editorTextBox.Text == "")
+            {
+                MessageBox.Show("Nu ati adaugat numele editorului!", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            if (typeComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Nu ati selectat tipul editurii!", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            if (nameTextBox.Text == "")
+            {
+                MessageBox.Show("Nu ati adaugat numele articolului!", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            if (modeComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Nu ati adaugat numele articolului!", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            int isSeleced = -1;
+            foreach (var author in Authors)
+                if (author.IsSelected == true)
+                    isSeleced++;
+            switch (isSeleced)
+            {
+                case 0:
+                    break;
+                case -1:
+                    MessageBox.Show("Nu ati selectat autorul principal!", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return false;
+                default:
+                    MessageBox.Show("Ati adaugat mai mult de un autor principal", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return false;
+            }
+
             return true;
         }
     }
     public class authorD
     {
+        public bool fromDatabase { get; set; }
         public bool IsSelected { get; set; }
         public int idAuthor { get; set; }
         public string fName { get; set; }

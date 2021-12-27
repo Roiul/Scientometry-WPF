@@ -232,7 +232,7 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nume", DbType="NVarChar(200)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nume", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
 		public string Nume
 		{
 			get
@@ -422,11 +422,9 @@ namespace PSO_Proiect
 		
 		private string _Nume;
 		
-		private double _FactorImpact;
+		private System.Nullable<double> _FactorImpact;
 		
 		private int _IDPublicatie;
-		
-		private int _IDAutor;
 		
 		private int _IDMod;
 		
@@ -456,12 +454,10 @@ namespace PSO_Proiect
     partial void OnIDArticolChanged();
     partial void OnNumeChanging(string value);
     partial void OnNumeChanged();
-    partial void OnFactorImpactChanging(double value);
+    partial void OnFactorImpactChanging(System.Nullable<double> value);
     partial void OnFactorImpactChanged();
     partial void OnIDPublicatieChanging(int value);
     partial void OnIDPublicatieChanged();
-    partial void OnIDAutorChanging(int value);
-    partial void OnIDAutorChanged();
     partial void OnIDModChanging(int value);
     partial void OnIDModChanged();
     partial void OnWOSChanging(string value);
@@ -524,8 +520,8 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FactorImpact", DbType="Float NOT NULL")]
-		public double FactorImpact
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FactorImpact", DbType="Float")]
+		public System.Nullable<double> FactorImpact
 		{
 			get
 			{
@@ -564,26 +560,6 @@ namespace PSO_Proiect
 					this._IDPublicatie = value;
 					this.SendPropertyChanged("IDPublicatie");
 					this.OnIDPublicatieChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDAutor", DbType="Int NOT NULL")]
-		public int IDAutor
-		{
-			get
-			{
-				return this._IDAutor;
-			}
-			set
-			{
-				if ((this._IDAutor != value))
-				{
-					this.OnIDAutorChanging(value);
-					this.SendPropertyChanging();
-					this._IDAutor = value;
-					this.SendPropertyChanged("IDAutor");
-					this.OnIDAutorChanged();
 				}
 			}
 		}
@@ -1184,7 +1160,7 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Link", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Link", DbType="NVarChar(200)")]
 		public string Link
 		{
 			get

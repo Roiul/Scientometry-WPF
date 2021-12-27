@@ -49,9 +49,8 @@ namespace PSO_Proiect
             string content = File.ReadAllText(fileName);
 
             BibtexFile file = BibtexIntroduction.BibtexImporter.FromString(content);
-            insertFromBib(file);
 
-           // Console.WriteLine(file.Entries.Count);
+            insertFromBib(file);
         }
 
         private void ManualButton_Click(object sender, RoutedEventArgs e)

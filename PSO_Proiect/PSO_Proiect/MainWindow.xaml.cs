@@ -35,9 +35,11 @@ namespace PSO_Proiect
         }
         public void addNewPubFromBibTex(BibtexIntroduction.BibtexFile file)
         {
-            this.masterGrid.Children.Clear();
-            this.masterGrid.Children.Add(addPubW);
-            addPubW.insertFromBibTex(file);
+                this.masterGrid.Children.Clear();
+                this.masterGrid.Children.Add(addPubW);
+                for (int i = 0; i < file.Entries.Count; i++)
+                    addPubW.insertFromBibTex(file, i);
+                addPubW.updateData();
         }
         public void closeApp()
         {

@@ -3,7 +3,7 @@
   <Table Name="dbo.Afilieri" Member="Afilieris">
     <Type Name="Afilieri">
       <Column Name="IDAfiliere" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nume" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Nume" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Association Name="Afilieri_Autor_Afiliere" Member="Autor_Afilieres" ThisKey="IDAfiliere" OtherKey="IDAfiliere" Type="Autor_Afiliere" />
     </Type>
   </Table>
@@ -18,9 +18,8 @@
     <Type Name="Articole">
       <Column Name="IDArticol" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nume" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="FactorImpact" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="FactorImpact" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="IDPublicatie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IDAutor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IDMod" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="WOS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DOI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -48,7 +47,7 @@
       <Column Name="Nume" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
       <Column Name="Prenume" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="UEFID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Link" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Link" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Association Name="Autori_Autor_Afiliere" Member="Autor_Afilieres" ThisKey="IDAutor" OtherKey="IDAutor" Type="Autor_Afiliere" />
       <Association Name="Autori_Autori_Articole" Member="Autori_Articoles" ThisKey="IDAutor" OtherKey="IDAutor" Type="Autori_Articole" />
     </Type>

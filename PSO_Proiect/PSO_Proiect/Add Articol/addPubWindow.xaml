@@ -8,12 +8,12 @@
              d:DesignHeight="450" 
              d:DesignWidth="800">
     <Grid>
-        <ScrollViewer Background="#FFA4A49F" Margin="0,0,0,-310">
+        <ScrollViewer Background="#FFA4A49F" Margin="0,0,0,0">
             <StackPanel>
                 <TextBlock Text="Adăugare articol" 
                            FontWeight="ExtraBlack"
                            Margin="0,15,0,0" 
-                           FontSize="45" 
+                           FontSize="45"  
                            HorizontalAlignment="Center"/>
                 <StackPanel x:Name="pubPanel"
                             Margin="0,15,0,0"
@@ -230,7 +230,7 @@
                                 Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center"
                                    TextWrapping="Wrap" 
-                                   Text="Anul" 
+                                   Text="Anul*" 
                                    Width="139"
                                    Height="21"
                                    FontSize="15"/>
@@ -242,7 +242,7 @@
                                  Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center"
                                    TextWrapping="Wrap" 
-                                   Text="Pagina" 
+                                   Text="Pagina*" 
                                    Width="139" 
                                    Height="21"
                                    FontSize="15"/>
@@ -254,7 +254,7 @@
                                  Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center"
                                    TextWrapping="Wrap" 
-                                   Text="Volum" 
+                                   Text="Volum*" 
                                    Width="139"
                                    Height="21" 
                                    FontSize="15"/>
@@ -266,7 +266,7 @@
                                  Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center" 
                                    TextWrapping="Wrap"
-                                   Text="Numar"
+                                   Text="Numar*"
                                    Width="139"
                                    Height="21"
                                    FontSize="15"/>

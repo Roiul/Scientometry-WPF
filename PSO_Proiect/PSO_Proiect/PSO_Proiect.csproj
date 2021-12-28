@@ -81,6 +81,9 @@
     <Compile Include="Add Articol\Windows\authorWindow.xaml.cs">
       <DependentUpon>authorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Add Articol\Windows\viewAuthorsWindow.xaml.cs">
+      <DependentUpon>viewAuthorsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="viewPubsWindow.xaml.cs">
       <DependentUpon>viewPubsWindow.xaml</DependentUpon>
     </Compile>
@@ -108,6 +111,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Add Articol\Windows\viewAuthorsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="viewPubsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

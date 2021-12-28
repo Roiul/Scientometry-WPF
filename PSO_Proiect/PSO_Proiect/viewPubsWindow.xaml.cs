@@ -26,6 +26,7 @@ namespace PSO_Proiect
         public Action<BibtexIntroduction.BibtexFile> insertFromBib;
 
         public Action viewPubsButtonAction;
+        public Action viewAuthorsButtonAction;
         public Action addButtonAction;
         public Action exitButtonAction;
         public viewPubsWindow()
@@ -61,6 +62,11 @@ namespace PSO_Proiect
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void authorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewAuthorsButtonAction();
         }
     }
 }

@@ -156,11 +156,11 @@ namespace PSO_Proiect
                             if (authorFromDB.Link != null)
                                 author.link = authorFromDB.Link;
                             else
-                                author.link = "";
+                                author.link = string.Empty;
                             if (authorFromDB.UEFID != null)
-                                author.uefid = (int)authorFromDB.UEFID;
+                                author.uefid = authorFromDB.UEFID;
                             else
-                                author.uefid = 0;
+                                author.uefid = string.Empty;
                         }
                         newArticol.autori.Add(author);
                     }
@@ -323,7 +323,7 @@ namespace PSO_Proiect
                         newAdded[newAdded.Count - 1].Prenume;
                     newAuthor.fName = newAdded[newAdded.Count - 1].Prenume;
                     newAuthor.lName = newAdded[newAdded.Count -1].Nume;
-                    newAuthor.uefid = (int)newAdded[newAdded.Count - 1].UEFID;
+                    newAuthor.uefid = newAdded[newAdded.Count - 1].UEFID;
                     newAuthor.link= newAdded[newAdded.Count - 1].Link;
                     newAuthor.idAuthor = newAdded[newAdded.Count - 1].IDAutor;
                     newAuthor.fromDatabase = true;
@@ -338,7 +338,7 @@ namespace PSO_Proiect
                               select item).FirstOrDefault();
                 newAuthor.fName = author.Prenume;
                 newAuthor.lName = author.Nume;
-                newAuthor.uefid = (int)author.UEFID;
+                newAuthor.uefid = author.UEFID;
                 newAuthor.link = author.Link;
                 newAuthor.idAuthor = author.IDAutor;
                 newAuthor.fromDatabase= true;
@@ -444,7 +444,7 @@ namespace PSO_Proiect
         public int idAuthor { get; set; }
         public string fName { get; set; }
         public string lName { get; set; }
-        public int uefid { get; set; }
+        public string uefid { get; set; }
         public string link { get; set; }
     }
 }

@@ -1049,7 +1049,7 @@ namespace PSO_Proiect
 		
 		private string _Prenume;
 		
-		private System.Nullable<int> _UEFID;
+		private string _UEFID;
 		
 		private string _Link;
 		
@@ -1067,7 +1067,7 @@ namespace PSO_Proiect
     partial void OnNumeChanged();
     partial void OnPrenumeChanging(string value);
     partial void OnPrenumeChanged();
-    partial void OnUEFIDChanging(System.Nullable<int> value);
+    partial void OnUEFIDChanging(string value);
     partial void OnUEFIDChanged();
     partial void OnLinkChanging(string value);
     partial void OnLinkChanged();
@@ -1140,8 +1140,8 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UEFID", DbType="Int")]
-		public System.Nullable<int> UEFID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UEFID", DbType="NVarChar(50)")]
+		public string UEFID
 		{
 			get
 			{

@@ -93,3 +93,5 @@ C:\Users\IOSUB\Documents\ATM_Anul_III\Semestrul_1\PSO--Proiect\Scientometry-WPF\
 C:\Users\IOSUB\Documents\ATM_Anul_III\Semestrul_1\PSO--Proiect\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.csproj.CopyComplete
 C:\Users\IOSUB\Documents\ATM_Anul_III\Semestrul_1\PSO--Proiect\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.exe
 C:\Users\IOSUB\Documents\ATM_Anul_III\Semestrul_1\PSO--Proiect\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\PSO_Proiect.pdb
+C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\Add Articol\Windows\viewAuthorsWindow.g.cs
+C:\Users\savai\Desktop\Git Repository\Scientometry-WPF\PSO_Proiect\PSO_Proiect\obj\Debug\Add Articol\Windows\viewAuthorsWindow.baml

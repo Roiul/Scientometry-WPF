@@ -46,7 +46,7 @@
       <Column Name="IDAutor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nume" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
       <Column Name="Prenume" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="UEFID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UEFID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Link" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Association Name="Autori_Autor_Afiliere" Member="Autor_Afilieres" ThisKey="IDAutor" OtherKey="IDAutor" Type="Autor_Afiliere" />
       <Association Name="Autori_Autori_Articole" Member="Autori_Articoles" ThisKey="IDAutor" OtherKey="IDAutor" Type="Autori_Articole" />

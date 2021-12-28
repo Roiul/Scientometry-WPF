@@ -21,6 +21,8 @@ namespace PSO_Proiect
 
         viewPubsWindow viewPubsW = new viewPubsWindow();
         addPubWindow addPubW = new addPubWindow();
+        viewAuthorsWindow viewAuthorsW=new viewAuthorsWindow();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +43,11 @@ namespace PSO_Proiect
                     addPubW.insertFromBibTex(file, i);
                 addPubW.updateData();
         }
+        public void viewAuthors()
+        {
+            this.masterGrid.Children.Clear();
+            this.masterGrid.Children.Add(viewAuthorsW);
+        }
         public void closeApp()
         {
             this.Close();
@@ -56,8 +63,11 @@ namespace PSO_Proiect
             viewPubsW.addButtonAction += addNewPub;
             viewPubsW.exitButtonAction += closeApp;
             viewPubsW.insertFromBib += addNewPubFromBibTex;
+            viewPubsW.viewAuthorsButtonAction += viewAuthors;
 
             addPubW.backFromPubsButtonAction += viewPubs;
+
+            viewAuthorsW.backToViewPubs += viewPubs;
         }
     }
 }

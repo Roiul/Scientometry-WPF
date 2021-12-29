@@ -29,11 +29,6 @@ namespace PSO_Proiect
         public Action exitButtonAction;
         public Action<string, string, int, string> getPubs;
 
-        //private List<String> filterConstraints;
-        //private DataTable dt;
-        //private DataView dv;
-        //private List<Articol> articole;
-
         public viewPubsWindow()
         {
             InitializeComponent();
@@ -114,34 +109,34 @@ namespace PSO_Proiect
                 #endregion
 
 
-                //var idPublicatii = (from i in db.Tip_Publicaties
-                //                    join j in db.Publicatiis on i.IDTipPublicatie equals j.TipPublicatie
-                //                    join k in db.Articoles on j.IDPublicatie equals k.IDPublicatie
-                //                    select i.IDTipPublicatie).ToList();
+                var idPublicatii = (from i in db.Tip_Publicaties
+                                    join j in db.Publicatiis on i.IDTipPublicatie equals j.TipPublicatie
+                                    join k in db.Articoles on j.IDPublicatie equals k.IDPublicatie
+                                    select i.IDTipPublicatie).ToList();
 
-                //for(int i=0;i<idPublicatii.Count;i++)
-                //{
-                //    var tipuriPublicatii = (from l in db.Tip_Publicaties
-                //                            where l.IDTipPublicatie == idPublicatii[i]
-                //                            select l).FirstOrDefault();
-                //    if(i==0)
-                //    {
-                //        articol.TipPublicatie += tipuriPublicatii.Tip;
-                //    }
-                //    else
-                //    {
-                //        articol.TipPublicatie += " " + tipuriPublicatii.Tip;
-                //    }
-                //}
+                for (int i = 0; i < idPublicatii.Count; i++)
+                {
+                    var tipuriPublicatii = (from l in db.Tip_Publicaties
+                                            where l.IDTipPublicatie == idPublicatii[i]
+                                            select l).FirstOrDefault();
+                    if (i == 0)
+                    {
+                        articol.TipPublicatie += tipuriPublicatii.Tip;
+                    }
+                    else
+                    {
+                        articol.TipPublicatie += " " + tipuriPublicatii.Tip;
+                    }
+                }
 
                 articol.TipPublicatie = (from i in db.Tip_Publicaties
                                          join j in db.Publicatiis on i.IDTipPublicatie equals j.TipPublicatie
                                          join k in db.Articoles on j.IDPublicatie equals k.IDPublicatie
                                          select i.IDTipPublicatie).ToList().ToString();
-                foreach(var it in listaArticole)
-                {
-                    pubsDataGrid.Columns.Add(it);
-                }
+                //foreach(var it in listaArticole)
+                //{
+                //    pubsDataGrid.Columns.Add(it);
+                //}
                 articol.An = (from i in db.Detaliis
                               join j in db.Articoles on i.IDDetalii equals j.IDDetalii
                               select i.An).ToList();

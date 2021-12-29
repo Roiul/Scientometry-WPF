@@ -83,16 +83,23 @@
                     Height="40" 
                     Click="ManualButton_Click"/>
             <Button x:Name="BibTextButton"
-                    Margin="0,0,0,165"
+                    Margin="0,0,0,120"
                     Content="Adăugare&#xA;BibText"
                     Width="100"
                     Height="40"
                     Click="BibTextButton_Click"/>
+            <Button x:Name="authorsButton"
+                    Margin="0,0,0,5"
+                    Content="Autori" 
+                    Width="100"
+                    Height="40"
+                    Click="authorsButton_Click"/>
             <Button x:Name="exitButton"
                     Content="Exit" 
                     Width="100"
                     Height="40"
                     Click="exitButton_Click"/>
+            
         </StackPanel>
     </Grid>
 </UserControl>

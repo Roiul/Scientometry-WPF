@@ -24,6 +24,8 @@ namespace PSO_Proiect
 
         public Action backFromPubsButtonAction;
 
+        int index = 0;
+        List<pageData> articole=new List<pageData>();
         List<authorD> Authors=new List<authorD>();
         public addPubWindow()
         {
@@ -32,6 +34,182 @@ namespace PSO_Proiect
             initializeUCComponents();
         }
 
+        public void updateData()
+        {
+            foreach(var autor in articole[index].autori)
+            {
+                authorsDataGrid.Items.Add(autor);
+                Authors.Add(autor);
+            }
+            if (articole[index].numeArticol != null)
+            {
+                nameTextBox.Text = articole[index].numeArticol;
+                nameTextBox.IsReadOnly = true;
+            }
+            else
+                nameTextBox.Text = string.Empty;
+            if (articole[index].numePublicatie != null)
+            {
+                pubNameTextBox.Text = articole[index].numePublicatie;
+                pubNameTextBox.IsReadOnly = true;
+            }
+            else
+                pubNameTextBox.Text = string.Empty;
+            if (articole[index].editorPublicatie != null)
+            {
+                editorTextBox.Text = articole[index].editorPublicatie;
+                editorTextBox.IsReadOnly = true;
+            }
+            else
+                editorTextBox.Text = string.Empty;
+            if (articole[index].jurnalArticol != null)
+            {
+                jurnalTextBox.Text = articole[index].jurnalArticol;
+                jurnalTextBox.IsReadOnly = true;
+            }
+            else
+                jurnalTextBox.Text = string.Empty;
+            if (articole[index].volumArticol != null)
+            {
+                volumeTextBox.Text = articole[index].volumArticol;
+                volumeTextBox.IsReadOnly = true;
+            }
+            else
+                volumeTextBox.Text = string.Empty;
+            if (articole[index].paginiArticol != null)
+            {
+                pageTextBox.Text = articole[index].paginiArticol;
+                pageTextBox.IsReadOnly = true;
+            }
+            else
+                pageTextBox.Text = string.Empty;
+            if (articole[index].numarArticol != null)
+            {
+                numberTextBox.Text = articole[index].numarArticol;
+                numberTextBox.IsReadOnly = true;
+            }
+            else
+                numberTextBox.Text = string.Empty;
+            if (articole[index].doiArticol != null)
+            {
+                doiTextBox.Text = articole[index].doiArticol;
+                doiTextBox.IsReadOnly = true;
+            }
+            if (articole[index].anArticol != null)
+            {
+                yearTextBox.Text = articole[index].anArticol;
+                yearTextBox.IsReadOnly = true;
+            }
+            else
+                yearTextBox.Text = string.Empty;
+            if (articole[index].tipPublicatie != null)
+            {
+                typeComboBox.Text = articole[index].tipPublicatie;
+                typeComboBox.IsReadOnly = true;
+            }
+            else
+                typeComboBox.Text = string.Empty;
+            if (articole[index].modPrezentare != null)
+            {
+                modeComboBox.Text = articole[index].modPrezentare;
+                modeComboBox.IsReadOnly = true;
+            }
+            else
+                modeComboBox.Text = string.Empty;
+            impactFactorTextBox.Text = string.Empty;
+        index++;
+        }
+
+        public void insertFromBibTex(BibtexIntroduction.BibtexFile file, int variable)
+        {
+            pageData newArticol = new pageData();
+            newArticol.autori = new List<authorD>();
+            for (int counter = 0; counter < file.Entries.ToList()[variable].Tags.Count; counter++)
+            {
+                if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "author")
+                {
+                    for (int j = 0; j < file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(new[] { "and" }, StringSplitOptions.None).Count(); j++)
+                    {
+                        authorD author = new authorD();
+                        author.lName = file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(new[] { "and" }, StringSplitOptions.None).ToList()[j].Split(',').ToList()[0];
+                        author.fName = file.Entries.ToList()[variable].Tags.ToList()[counter].Value.Split(new[] { "and" }, StringSplitOptions.None).ToList()[j].Split(',').ToList()[1];
+
+                        var authorFromDB = (from autor in db.Autoris
+                                            where autor.Nume + " " + autor.Prenume[0] == author.lName + " " + author.lName[0]
+                                            select autor).FirstOrDefault();
+                        if (authorFromDB == null)
+                        {
+                            var newAutor=new Autori { Nume = author.lName, Prenume = author.fName };
+                            author.fromDatabase = false;
+                            author.IsSelected = false;
+                            db.Autoris.InsertOnSubmit(newAutor);
+                            db.SubmitChanges();
+                            author.idAuthor = newAutor.IDAutor;
+                        }
+                        else
+                        {
+                            author.fName = authorFromDB.Nume;
+                            author.lName = authorFromDB.Prenume;
+                            author.idAuthor = authorFromDB.IDAutor;
+                            author.IsSelected = false;
+                            author.fromDatabase = true;
+                            if (authorFromDB.Link != null)
+                                author.link = authorFromDB.Link;
+                            else
+                                author.link = string.Empty;
+                            if (authorFromDB.UEFID != null)
+                                author.uefid = authorFromDB.UEFID;
+                            else
+                                author.uefid = string.Empty;
+                        }
+                        newArticol.autori.Add(author);
+                    }
+                    continue;
+                }
+                if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "title")
+                {
+                    newArticol.numeArticol= file.Entries.ToList()[variable].Tags.ToList()[counter].Value;                    
+                    continue;
+                }
+                if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "publisher")
+                {
+                    newArticol.numePublicatie = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;                    
+                    continue;
+                }
+                if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "editor")
+                {
+                    newArticol.editorPublicatie = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                    
+                    continue;
+                }
+                if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "journal")
+                {
+                    newArticol.jurnalArticol = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;                   
+                    continue;
+                }
+                if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "year")
+                {
+                    newArticol.anArticol = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;
+                    continue;
+                }
+                if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "volume")
+                {
+                    newArticol.volumArticol = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;                   
+                    continue;
+                }
+                if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "pages")
+                {
+                    newArticol.paginiArticol = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;                   
+                    continue;
+                }
+                if (file.Entries.ToList()[variable].Tags.ToList()[counter].Key == "number")
+                {
+                    newArticol.numarArticol = file.Entries.ToList()[variable].Tags.ToList()[counter].Value;                   
+                    continue;
+                }
+            }
+            articole.Add(newArticol);
+        }
         private int publicatiiTableInsert()
         {
             var type = (from item in db.Tip_Publicaties
@@ -52,7 +230,7 @@ namespace PSO_Proiect
             var newDetalii = new Detalii
             {
                 An = Convert.ToInt32(this.yearTextBox.Text),
-                Pagina = Convert.ToInt32(this.pageTextBox.Text),
+                Pagina = this.pageTextBox.Text,
                 Volum = this.volumeTextBox.Text,
                 Numar = Convert.ToInt32(this.numberTextBox.Text)
             };
@@ -65,6 +243,8 @@ namespace PSO_Proiect
             var idMod=(from item in db.ModPrezentares
                        where item.Tip==this.modeComboBox.Text
                        select item).FirstOrDefault();
+            if (this.impactFactorTextBox.Text == "")
+                this.impactFactorTextBox.Text = "0";
             var newArticol = new Articole
             {
                 Nume = this.nameTextBox.Text,
@@ -86,7 +266,8 @@ namespace PSO_Proiect
                 var newAutoriArticole = new Autori_Articole
                 {
                     IDArticol = idArticol,
-                    IDAutor = author.idAuthor
+                    IDAutor = author.idAuthor,
+                    TipAutor=Convert.ToInt32(author.IsSelected)
                 };
                 db.Autori_Articoles.InsertOnSubmit(newAutoriArticole);
             }
@@ -142,9 +323,11 @@ namespace PSO_Proiect
                         newAdded[newAdded.Count - 1].Prenume;
                     newAuthor.fName = newAdded[newAdded.Count - 1].Prenume;
                     newAuthor.lName = newAdded[newAdded.Count -1].Nume;
-                    newAuthor.uefid = (int)newAdded[newAdded.Count - 1].UEFID;
+                    newAuthor.uefid = newAdded[newAdded.Count - 1].UEFID;
                     newAuthor.link= newAdded[newAdded.Count - 1].Link;
                     newAuthor.idAuthor = newAdded[newAdded.Count - 1].IDAutor;
+                    newAuthor.fromDatabase = true;
+                    authorsDataGrid.Items.Add(newAuthor);
                     Authors.Add(newAuthor);
                 }
             }
@@ -155,9 +338,10 @@ namespace PSO_Proiect
                               select item).FirstOrDefault();
                 newAuthor.fName = author.Prenume;
                 newAuthor.lName = author.Nume;
-                newAuthor.uefid = (int)author.UEFID;
+                newAuthor.uefid = author.UEFID;
                 newAuthor.link = author.Link;
                 newAuthor.idAuthor = author.IDAutor;
+                newAuthor.fromDatabase= true;
                 authorsDataGrid.Items.Add(newAuthor);
                 Authors.Add(newAuthor);
             }
@@ -173,41 +357,94 @@ namespace PSO_Proiect
         {
             if (!verifyData())
                 return;
-
-            int isSeleced = -1;
-            foreach (var author in Authors)
-                if(author.IsSelected==true)
-                    isSeleced++;
-            switch (isSeleced)
+            articoleAutoriTableInsert(
+                       articoleTableInsert(
+                           publicatiiTableInsert(),
+                           detaliiTableInsert()
+                       ));
+            authorsDataGrid.Items.Clear();
+            Authors.Clear();
+            if (articole.Count > index)
             {
-            case 0:
-                articoleAutoriTableInsert(
-                    articoleTableInsert(
-                        publicatiiTableInsert(),
-                        detaliiTableInsert()
-                    ));
-                break;
-            case -1:
-                MessageBox.Show("Nu ati selectat autorul principal!", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
-                break;
-            default:
-                MessageBox.Show("Ati adaugat mai mult de un autor principal", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
-                break;
+                updateData();
+                MessageBox.Show("Articol adaugat cu succes!\nMai sunt de adaugat " + (articole.Count - index + 1) + " articole", "Succes", MessageBoxButton.OK, MessageBoxImage.Information); ;
             }
+            else
+            {
+                MessageBox.Show("Articol adaugat cu succes", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                backFromPubsButtonAction();
+            }       
         }
 
         private bool verifyData()
         {
+            if (pubNameTextBox.Text == "")
+            {
+                MessageBox.Show("Nu ati adaugat numele editurii!\nToate campurile marcate cu * trebuie completate.", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            if (editorTextBox.Text == "")
+            {
+                MessageBox.Show("Nu ati adaugat numele editorului!\nToate campurile marcate cu * trebuie completate.", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            if (typeComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Nu ati selectat tipul editurii!\nToate campurile marcate cu * trebuie completate.", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            if (nameTextBox.Text == "")
+            {
+                MessageBox.Show("Nu ati adaugat numele articolului!\nToate campurile marcate cu * trebuie completate.", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            if (modeComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Nu ati adaugat numele articolului!\nToate campurile marcate cu * trebuie completate.", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            int IsSelected = -1;
+            foreach (var author in Authors)
+                if (author.IsSelected == true)
+                    IsSelected++;
+            switch (IsSelected)
+            {
+                case 0:
+                    break;
+                case -1:
+                    MessageBox.Show("Nu ati selectat autorul principal!", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return false;
+                default:
+                    MessageBox.Show("Ati adaugat mai mult de un autor principal", "Invalid", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return false;
+            }
             return true;
         }
     }
+    public class pageData
+    {
+        public string numePublicatie { get; set; }
+        public string editorPublicatie { get; set; }
+        public string tipPublicatie { get; set; }
+        public string numeArticol { get; set; }
+        public string doiArticol { get; set; }
+        public string jurnalArticol { get; set; }
+        public string modPrezentare { get; set; }
+        public List<authorD> autori { get; set; }
+        public string anArticol { get; set; }
+        public string paginiArticol { get; set; }
+        public string volumArticol { get; set; }
+        public string numarArticol { get; set; }
+    }
     public class authorD
     {
+        public bool fromDatabase { get; set; }
         public bool IsSelected { get; set; }
         public int idAuthor { get; set; }
         public string fName { get; set; }
         public string lName { get; set; }
-        public int uefid { get; set; }
+        public string uefid { get; set; }
         public string link { get; set; }
     }
 }

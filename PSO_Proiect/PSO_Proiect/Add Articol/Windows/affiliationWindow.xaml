@@ -5,12 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PSO_Proiect"
         mc:Ignorable="d"
-        Title="affiliationWindow" Height="160" Width="292">
-    <Grid Margin="0,0,0,-1">
-        <TextBox x:Name="nameBox" HorizontalAlignment="Left" Margin="90,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Afiliere noua" VerticalAlignment="Top" RenderTransformOrigin="1.016,0.629" FontSize="20" Margin="84,10,0,0"/>
-        <TextBlock HorizontalAlignment="Left" Margin="39,52,0,0" TextWrapping="Wrap" Text="Nume" VerticalAlignment="Top"/>
-        <Button x:Name="addButton" Content="Adauga&#xD;&#xA;" HorizontalAlignment="Left" Margin="57,83,0,0" VerticalAlignment="Top" Height="28" Width="79" Click="addButton_Click"/>
-        <Button x:Name="exitButton" Content="Renunta" HorizontalAlignment="Left" Margin="156,83,0,0" VerticalAlignment="Top" Height="28" Width="79" Click="exitButton_Click"/>
+        Title="Adaugare afiliere"
+        Height="145" 
+        Width="276">
+    <Grid Background="Gray" Margin="0,0,0,0">
+        <StackPanel Margin="0,0,0,0">
+            <TextBlock HorizontalAlignment="Left" 
+                   TextWrapping="Wrap"
+                   Text="Afiliere noua" 
+                   VerticalAlignment="Top" 
+                   FontSize="20" 
+                   FontWeight="Black"
+                   Margin="84,10,0,0"/>
+            <StackPanel HorizontalAlignment="Left" 
+                        Margin="20,6,0,0" 
+                        Orientation="Horizontal" 
+                        VerticalAlignment="Center">
+                <TextBlock Text="Nume" 
+                           Margin="0,0,5,0"/>
+                <TextBox x:Name="nameBox" 
+                         Width="196"/>   
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" 
+                        Orientation="Horizontal" 
+                        VerticalAlignment="Top"
+                        Margin="0,10,0,0">
+                <Button x:Name="addButton" 
+                        Content="Adauga"
+                        Height="28" 
+                        Width="79"
+                        Click="addButton_Click"/>
+                <Button x:Name="exitButton"
+                        Content="Renunta" 
+                        Height="28"
+                        Width="79"
+                        Click="exitButton_Click"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

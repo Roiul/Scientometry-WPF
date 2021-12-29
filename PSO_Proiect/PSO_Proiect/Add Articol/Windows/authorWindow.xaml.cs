@@ -84,18 +84,19 @@ namespace PSO_Proiect
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            if (uefidBox.Text == null)
+                uefidBox.Text = string.Empty;
+            if (linkBox.Text == null)
+                linkBox.Text = string.Empty;
             var newAuthor = new Autori
             {
                 Nume = lastNameBox.Text,
                 Prenume = firstNameBox.Text,
-                UEFID = Convert.ToInt32(uefidBox.Text),
+                UEFID = uefidBox.Text,
                 Link = linkBox.Text
             };
             db.Autoris.InsertOnSubmit(newAuthor);
             db.SubmitChanges();
-            var idAuthor=(from item in db.Autoris
-                          where item.UEFID==newAuthor.UEFID
-                          select item.IDAutor).FirstOrDefault();
             List<int> ids = new List<int>();
             foreach(affiliationNames item in affiliationDataGrid.Items)
             {
@@ -105,7 +106,7 @@ namespace PSO_Proiect
                 var newAfiliereAutori = new Autor_Afiliere
                 {
                     IDAfiliere = idAfiliere,
-                    IDAutor = idAuthor
+                    IDAutor = newAuthor.IDAutor
                 };
                 db.Autor_Afilieres.InsertOnSubmit(newAfiliereAutori);
 

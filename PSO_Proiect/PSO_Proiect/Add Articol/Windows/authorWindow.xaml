@@ -5,32 +5,126 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PSO_Proiect"
         mc:Ignorable="d"
-        Title="authorWindow" Height="392" Width="306">
-    <Grid Margin="0,0,0,8">
-        <TextBlock HorizontalAlignment="Left" Margin="111,-2,0,0" TextWrapping="Wrap" Text="Autor nou" VerticalAlignment="Top" Height="37" Width="108" FontSize="30"/>
-        <TextBlock HorizontalAlignment="Left" Margin="52,45,0,0" TextWrapping="Wrap" Text="Nume" VerticalAlignment="Top" Height="20" Width="43"/>
-        <TextBlock HorizontalAlignment="Left" Margin="52,65,0,0" TextWrapping="Wrap" Text="Prenume" VerticalAlignment="Top" Height="20" Width="43"/>
-        <TextBlock HorizontalAlignment="Left" Margin="52,84,0,0" TextWrapping="Wrap" Text="Link" VerticalAlignment="Top" Height="20" Width="43"/>
-        <TextBlock HorizontalAlignment="Left" Margin="52,104,0,0" TextWrapping="Wrap" Text="UEFID" VerticalAlignment="Top" Height="20" Width="43"/>
-        <TextBlock HorizontalAlignment="Left" Margin="52,124,0,0" TextWrapping="Wrap" Text="Afiliere" VerticalAlignment="Top" Height="20" Width="43"/>
-        <TextBlock HorizontalAlignment="Left" Margin="52,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="70"><Run Text="Lista afilierei"/><LineBreak/><Run/></TextBlock>
-        <TextBox x:Name="lastNameBox" HorizontalAlignment="Left" Margin="135,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153"/>
-        <TextBox x:Name="firstNameBox" HorizontalAlignment="Left" Margin="135,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153"/>
-        <TextBox x:Name="linkBox" HorizontalAlignment="Left" Margin="135,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153"/>
-        <TextBox x:Name="uefidBox" HorizontalAlignment="Left" Margin="135,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153"/>
-        <ComboBox x:Name="affiliationComboBox" HorizontalAlignment="Left" Margin="135,121,0,0" VerticalAlignment="Top" Width="153" Height="21" SelectionChanged="affiliationComboBox_SelectionChanged"/>
-        <DataGrid x:Name="affiliationDataGrid" Margin="135,144,18,74">
+        Title="Adaugare autor" 
+        Height="400" 
+        Width="306">
+    <Grid Margin="0,0,0,0" 
+          Background="Gray">
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="111,-2,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Autor nou" 
+                   VerticalAlignment="Top" 
+                   Height="37" 
+                   Width="108" 
+                   FontWeight="ExtraBlack" 
+                   FontSize="29" />
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="36,45,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Nume" 
+                   VerticalAlignment="Top" 
+                   Height="20" 
+                   Width="43"/>
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="36,65,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Prenume" 
+                   VerticalAlignment="Top" 
+                   Height="20" 
+                   Width="43"/>
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="36,84,0,0" 
+                   TextWrapping="Wrap"
+                   Text="Link" 
+                   VerticalAlignment="Top"
+                   Height="20"
+                   Width="43"/>
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="36,104,0,0" 
+                   TextWrapping="Wrap"
+                   Text="UEFID"
+                   VerticalAlignment="Top"
+                   Height="20"
+                   Width="43"/>
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="36,124,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Afiliere"
+                   VerticalAlignment="Top"
+                   Height="20" 
+                   Width="43"/>
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="36,148,0,0" 
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Height="20" 
+                   Width="70"
+                   Text="Lista afilierei"/>
+        <TextBox x:Name="lastNameBox" 
+                 HorizontalAlignment="Left" 
+                 Margin="119,45,0,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="153"/>
+        <TextBox x:Name="firstNameBox" 
+                 HorizontalAlignment="Left" 
+                 Margin="119,64,0,0" 
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="153"/>
+        <TextBox x:Name="linkBox"
+                 HorizontalAlignment="Left" 
+                 Margin="119,83,0,0"
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top"
+                 Width="153"/>
+        <TextBox x:Name="uefidBox"
+                 HorizontalAlignment="Left"
+                 Margin="119,102,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="153"/>
+        <ComboBox x:Name="affiliationComboBox"
+                  HorizontalAlignment="Left" 
+                  Margin="119,121,0,0" 
+                  VerticalAlignment="Top"
+                  Width="153"
+                  Height="21" 
+                  SelectionChanged="affiliationComboBox_SelectionChanged"/>
+        <DataGrid x:Name="affiliationDataGrid" 
+                  Margin="119,144,34,74">
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="deleteRecord" Header="Delete" Click="MenuItem_Click"/>
+                    <MenuItem x:Name="deleteRecord" 
+                              Header="Delete"
+                              Click="MenuItem_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="name" Header="Nume Afiliere" Binding="{Binding Name}" Width="152" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="name" 
+                                    Header="Nume Afiliere"
+                                    Binding="{Binding Name}"
+                                    Width="152" 
+                                    CanUserResize="False"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="addButton" Content="Adauga" HorizontalAlignment="Left" Margin="61,326,0,0" VerticalAlignment="Top" Width="79" Click="addButton_Click"/>
-        <Button x:Name="exitButton" Content="Renunta" HorizontalAlignment="Left" Margin="160,326,0,0" VerticalAlignment="Top" Width="79" Click="exitButton_Click"/>
+        <Button x:Name="addButton" 
+                Content="Adauga"
+                HorizontalAlignment="Left"
+                Margin="61,326,0,0"
+                VerticalAlignment="Top" 
+                Width="90"
+                Height="30"
+                Click="addButton_Click"/>
+        <Button x:Name="exitButton" 
+                Content="Renunta" 
+                HorizontalAlignment="Left"
+                Margin="156,326,0,0"
+                VerticalAlignment="Top" 
+                Width="90"
+                Height="30"
+                Click="exitButton_Click"/>
 
     </Grid>
 </Window>

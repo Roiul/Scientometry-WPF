@@ -8,12 +8,12 @@
              d:DesignHeight="450" 
              d:DesignWidth="800">
     <Grid>
-        <ScrollViewer Background="#FFA4A49F">
+        <ScrollViewer Background="#FFA4A49F" Margin="0,0,0,0">
             <StackPanel>
                 <TextBlock Text="Adăugare articol" 
                            FontWeight="ExtraBlack"
                            Margin="0,15,0,0" 
-                           FontSize="45" 
+                           FontSize="45"  
                            HorizontalAlignment="Center"/>
                 <StackPanel x:Name="pubPanel"
                             Margin="0,15,0,0"
@@ -28,7 +28,7 @@
                                 Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center"
                                    TextWrapping="Wrap"
-                                   Text="Nume"
+                                   Text="Nume*"
                                    Width="139"
                                    Height="21" 
                                    FontSize="15"/>
@@ -40,7 +40,7 @@
                                 Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center" 
                                    TextWrapping="Wrap" 
-                                   Text="WOS"
+                                   Text="Editor*"
                                    Width="139"
                                    Height="21"
                                    FontSize="15"/>
@@ -52,7 +52,7 @@
                                 Margin="0,0,0,7">
                         <TextBlock TextAlignment="Center" 
                                    TextWrapping="Wrap" 
-                                   Text="Tip"
+                                   Text="Tip*"
                                    Width="139"
                                    Height="21"
                                    FontSize="15"/>
@@ -73,7 +73,7 @@
                                 Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center"
                                    TextWrapping="Wrap" 
-                                   Text="Nume" 
+                                   Text="Nume*" 
                                    Width="139" Height="21"
                                    FontSize="15"/>
                         <TextBox x:Name="nameTextBox" 
@@ -119,8 +119,20 @@
                     <StackPanel Orientation="Horizontal"
                                 Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center" 
+                                   TextWrapping="Wrap" 
+                                   Text="Jurnal"
+                                   Width="139" 
+                                   Height="21"
+                                   FontSize="15"/>
+                        <TextBox x:Name="jurnalTextBox" 
+                                 TextWrapping="Wrap"
+                                 Width="599"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,4">
+                        <TextBlock TextAlignment="Center" 
                                    TextWrapping="Wrap"
-                                   Text="Mod prezentare"
+                                   Text="Mod prezentare*"
                                    Width="139"
                                    Height="21"
                                    FontSize="15"/>
@@ -141,7 +153,7 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center"
                                    TextWrapping="Wrap"
-                                   Text="Autor"
+                                   Text="Autor*"
                                    Width="139"
                                    Height="21"
                                    FontSize="15"/>
@@ -154,7 +166,7 @@
                         <TextBlock TextAlignment="Center"
                                    VerticalAlignment="Top" 
                                    TextWrapping="Wrap"
-                                   Text="Lista autori" 
+                                   Text="Lista autori*" 
                                    Width="139" 
                                    Height="21"
                                    FontSize="15"/>
@@ -173,7 +185,7 @@
                                 <DataGridTemplateColumn Header="Principal">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" />
+                                            <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -218,7 +230,7 @@
                                 Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center"
                                    TextWrapping="Wrap" 
-                                   Text="Anul" 
+                                   Text="Anul*" 
                                    Width="139"
                                    Height="21"
                                    FontSize="15"/>
@@ -230,7 +242,7 @@
                                  Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center"
                                    TextWrapping="Wrap" 
-                                   Text="Pagina" 
+                                   Text="Pagina*" 
                                    Width="139" 
                                    Height="21"
                                    FontSize="15"/>
@@ -242,7 +254,7 @@
                                  Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center"
                                    TextWrapping="Wrap" 
-                                   Text="Volum" 
+                                   Text="Volum*" 
                                    Width="139"
                                    Height="21" 
                                    FontSize="15"/>
@@ -254,7 +266,7 @@
                                  Margin="0,0,0,4">
                         <TextBlock TextAlignment="Center" 
                                    TextWrapping="Wrap"
-                                   Text="Numar"
+                                   Text="Numar*"
                                    Width="139"
                                    Height="21"
                                    FontSize="15"/>

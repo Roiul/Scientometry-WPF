@@ -25,7 +25,7 @@
                            FontSize="15"/>
                 <ComboBox x:Name="tipPublicatieComboBox" HorizontalAlignment="Left"
                           VerticalAlignment="Top"
-                          Width="150" SelectionChanged="tipPublicatieComboBox_SelectionChanged"/>
+                    Width="150" SelectionChanged="tipPublicatieComboBox_SelectionChanged"/>
             </StackPanel>
             <StackPanel Margin="0,0,5,0" 
                         VerticalAlignment="Top">
@@ -60,12 +60,12 @@
         <DataGrid x:Name="pubsDataGrid" 
                   Margin="15,60,128,15"
                   AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="columnArticol" Header="Articol" Binding="{Binding Articol}"/>
-                <DataGridTextColumn x:Name="columnTipPublicatie"  Header="TipPublicatie" Binding="{Binding TipPublicatie}"/>
-                <DataGridTextColumn x:Name="columnAn"  Header="An" Binding="{Binding An}"/>
-                <DataGridTextColumn x:Name="columnAutor"  Header="Autor" Binding="{Binding Autor}"/>
-            </DataGrid.Columns> />
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="columnArticol" Header="Articol" Binding="{Binding Articol}"/>
+                    <DataGridTextColumn x:Name="columnTipPublicatie"  Header="TipPublicatie" Binding="{Binding TipPublicatie}"/>
+                    <DataGridTextColumn x:Name="columnAn"  Header="An" Binding="{Binding An}"/>
+                    <DataGridTextColumn x:Name="columnAutor"  Header="Autor" Binding="{Binding Autor}"/>
+                </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Right"
@@ -99,7 +99,6 @@
                     Width="100"
                     Height="40"
                     Click="exitButton_Click"/>
-            
         </StackPanel>
     </Grid>
 </UserControl>

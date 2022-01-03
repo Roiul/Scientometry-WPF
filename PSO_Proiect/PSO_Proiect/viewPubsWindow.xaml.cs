@@ -275,9 +275,138 @@ namespace PSO_Proiect
             }
             pubsDataGrid.ItemsSource = listaArticole;
             #endregion
+
             #region filtru an
+            pubsDataGrid.ItemsSource = null;
+            if (an!=0)
+            {
+                var articole = (from items in db.Articoles
+                                join j in db.Detaliis on items.IDDetalii equals j.IDDetalii
+                                where j.An == an
+                                select items).ToList();
+
+                foreach (var item in articole)
+                {
+                    Articol articol = new Articol();
+
+                    articol.Nume = item.Nume;
+
+                    articol.An = (from i in db.Detaliis
+                                  where i.IDDetalii == item.IDDetalii
+                                  select i.An).FirstOrDefault();
+
+                    articol.Autor = (from i in db.Autoris
+                                     join j in db.Autori_Articoles on i.IDAutor equals j.IDAutor
+                                     join k in db.Articoles on j.IDArticol equals k.IDArticol
+                                     select i.Nume).FirstOrDefault();
+                    articol.An = an;
+
+                    articol.TipPublicatie = (from i in db.Tip_Publicaties
+                                             join j in db.Publicatiis on i.IDTipPublicatie equals j.TipPublicatie
+                                             join k in db.Articoles on j.IDPublicatie equals k.IDPublicatie
+                                             select i.Tip).FirstOrDefault();
+
+                    listaArticole.Add(articol);
+                }
+                if (!string.IsNullOrEmpty(tipPublicatie))
+                {
+                    List<Articol> list = new List<Articol>();
+                    foreach (var item in listaArticole)
+                    {
+                        if (item.TipPublicatie != tipPublicatie)
+                            list.Add(item);
+
+                    }
+                    foreach (var articol in list)
+                    {
+                        listaArticole.Remove(articol);
+                    }
+                    list.Clear();
+                }
+                if (!string.IsNullOrEmpty(autor))
+                {
+                    List<Articol> listAutori = new List<Articol>();
+                    foreach (var item in listaArticole)
+                    {
+                        if (item.Autor != autor)
+                            listAutori.Add(item);
+
+                    }
+                    foreach (var articol in listAutori)
+                    {
+                        listaArticole.Remove(articol);
+                    }
+                    listAutori.Clear();
+                }
+            }
+            pubsDataGrid.ItemsSource = listaArticole;
             #endregion
+
             #region filtru autor
+            pubsDataGrid.ItemsSource = null;
+            if (!string.IsNullOrEmpty(autor))
+            {
+                var articole = (from items in db.Articoles
+                                join j in db.Autori_Articoles on items.IDArticol equals j.IDArticol
+                                join k in db.Autoris on j.IDAutor equals k.IDAutor
+                                where k.Nume == autor
+                                select items).ToList();
+
+                foreach (var item in articole)
+                {
+                    Articol articol = new Articol();
+
+                    articol.Nume = item.Nume;
+
+                    articol.An = (from i in db.Detaliis
+                                  where i.IDDetalii == item.IDDetalii
+                                  select i.An).FirstOrDefault();
+
+                    articol.Autor = autor;
+
+                    articol.An = (from i in db.Detaliis
+                                  where i.IDDetalii == item.IDDetalii
+                                  select i.An).FirstOrDefault();
+
+                    articol.TipPublicatie = (from i in db.Tip_Publicaties
+                                             join j in db.Publicatiis on i.IDTipPublicatie equals j.TipPublicatie
+                                             join k in db.Articoles on j.IDPublicatie equals k.IDPublicatie
+                                             select i.Tip).FirstOrDefault();
+
+                    listaArticole.Add(articol);
+                }
+                if (!string.IsNullOrEmpty(tipPublicatie))
+                {
+                    List<Articol> list = new List<Articol>();
+                    foreach (var item in listaArticole)
+                    {
+                        if (item.TipPublicatie != tipPublicatie)
+                            list.Add(item);
+
+                    }
+                    foreach (var articol in list)
+                    {
+                        listaArticole.Remove(articol);
+                    }
+                    list.Clear();
+                }
+                if (an != 0)
+                {
+                    List<Articol> list = new List<Articol>();
+                    foreach (var item in listaArticole)
+                    {
+                        if (item.An != an)
+                            list.Add(item);
+
+                    }
+                    foreach (var articol in list)
+                    {
+                        listaArticole.Remove(articol);
+                    }
+                    list.Clear();
+                }
+            }
+            pubsDataGrid.ItemsSource = listaArticole;
             #endregion
         }
     }

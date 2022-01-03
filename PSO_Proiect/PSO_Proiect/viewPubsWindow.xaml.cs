@@ -32,9 +32,12 @@ namespace PSO_Proiect
         public static Tip_Publicatie tip= new Tip_Publicatie();
         public static Detalii an = new Detalii();
         public static Autori numeAutor=new Autori();
+
+        private List<Articol> listaArticole = new List<Articol>();
         public viewPubsWindow()
         {
             InitializeComponent();
+            reset();
 
             #region comboBox(filtru) TipPublicatie
             var publicatii = (from item in db.Tip_Publicaties
@@ -48,6 +51,7 @@ namespace PSO_Proiect
                 listaPublicatii.Add(p);
             }
             tipPublicatieComboBox.ItemsSource = listaPublicatii;
+            
             #endregion
 
             #region comboBox(filtru) Ani
@@ -61,7 +65,6 @@ namespace PSO_Proiect
                 a = item;
                 listaAni.Add(a);
             }
-
             anComboBox.ItemsSource = listaAni;
             #endregion
 
@@ -78,76 +81,50 @@ namespace PSO_Proiect
             }
             autorComboBox.ItemsSource = listaAutori;
             #endregion
+        }
 
-            #region populare Articole
-            var articole = (from items in db.Articoles
-                            select items).ToList();
-            List<Articol> listaArticole = new List<Articol>();
+        private void reset()
+        {
+            tip.Tip = null;
+            tipPublicatieComboBox.Text = "";
+
+            an.An = 0;
+            anComboBox.Text = "";
+
+            numeAutor.Nume = null;
+            autorComboBox.Text = "";
+
             listaArticole.Clear();
-            foreach(var item in articole)
+            pubsDataGrid.ItemsSource = null;
+
+            var articole = (from items in db.Articoles
+                            join j in db.Publicatiis on items.IDPublicatie equals j.IDPublicatie
+                            join k in db.Tip_Publicaties on j.TipPublicatie equals k.IDTipPublicatie
+                            select items).ToList();
+
+            foreach (var item in articole)
             {
                 Articol articol = new Articol();
-                #region autori
-                var idAutori = (from i in db.Autoris
-                               join j in db.Autori_Articoles on i.IDAutor equals j.IDAutor
-                               join k in db.Articoles on j.IDArticol equals k.IDArticol
-                               select i.IDAutor).ToList();
 
-                for(int i=0; i<idAutori.Count;i++)
-                {
+                articol.Nume = item.Nume;
 
-                    var numeAutori = (from l in db.Autoris
-                                      where l.IDAutor == idAutori[i]
-                                      select l).FirstOrDefault();
+                articol.An = (from i in db.Detaliis
+                              where i.IDDetalii == item.IDDetalii
+                              select i.An).FirstOrDefault();
 
-                    if (i==0)
-                    {
-                        articol.Autor += numeAutori.Nume;
-                    }
-                    else
-                    {
-                        articol.Autor += " " + numeAutori.Nume;
-                    }
-                }
-                #endregion
-
-
-                var idPublicatii = (from i in db.Tip_Publicaties
-                                    join j in db.Publicatiis on i.IDTipPublicatie equals j.TipPublicatie
-                                    join k in db.Articoles on j.IDPublicatie equals k.IDPublicatie
-                                    select i.IDTipPublicatie).ToList();
-
-                for (int i = 0; i < idPublicatii.Count; i++)
-                {
-                    var tipuriPublicatii = (from l in db.Tip_Publicaties
-                                            where l.IDTipPublicatie == idPublicatii[i]
-                                            select l).FirstOrDefault();
-                    if (tip == tipuriPublicatii)
-                    {
-                        articol.TipPublicatie += tipuriPublicatii.Tip;
-                    }
-                    else
-                    {
-                        articol.TipPublicatie += " " + tipuriPublicatii.Tip;
-                    }
-                }
+                articol.Autor = (from i in db.Autoris
+                                 join j in db.Autori_Articoles on i.IDAutor equals j.IDAutor
+                                 join k in db.Articoles on j.IDArticol equals k.IDArticol
+                                 select i.Nume).FirstOrDefault();
 
                 articol.TipPublicatie = (from i in db.Tip_Publicaties
                                          join j in db.Publicatiis on i.IDTipPublicatie equals j.TipPublicatie
                                          join k in db.Articoles on j.IDPublicatie equals k.IDPublicatie
-                                         select i.IDTipPublicatie).ToList().ToString();
-                
-                articol.An = (from i in db.Detaliis
-                              join j in db.Articoles on i.IDDetalii equals j.IDDetalii
-                              select i.An).FirstOrDefault();
-
-                articol.Nume=(from i in db.Articoles
-                              select i.Nume).ToList().ToString();
+                                         select i.Tip).FirstOrDefault();
 
                 listaArticole.Add(articol);
             }
-            pubsDataGrid.ItemsSource = listaArticole; 
-            #endregion
+            pubsDataGrid.ItemsSource = listaArticole;
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -177,22 +154,7 @@ namespace PSO_Proiect
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            tip.Tip = null;
-            tipPublicatieComboBox.Text = "";
-            //tipPublicatieComboBox.ItemsSource = null;
-            //tipPublicatieComboBox.Items.Clear();
-            //tipPublicatieComboBox.ClearValue(ItemsControl.ItemsSourceProperty);
-            //tipPublicatieComboBox.ItemsSource = listaPublicatii;
-            //tipPublicatieComboBox.ItemsSource=NewSo
-            an.An = 0;
-            anComboBox.Text = "";
-            //anComboBox.Items.Clear();
-            //anComboBox.ClearValue(ItemsControl.ItemsSourceProperty);
-            numeAutor.Nume = null;
-            autorComboBox.Text = "";
-            //autorComboBox.ItemsSource = null;
-            //autorComboBox.Items.Clear();
-            //autorComboBox.ClearValue(ItemsControl.ItemsSourceProperty);
+            reset();
         }
 
         private void authorsButton_Click(object sender, RoutedEventArgs e)
@@ -202,20 +164,121 @@ namespace PSO_Proiect
 
         private void tipPublicatieComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            listaArticole.Clear();
+
+            var selectedAn = anComboBox.SelectedItem;
+            an.An = Convert.ToInt32(selectedAn);
+
             string selectedPub = (string)tipPublicatieComboBox.SelectedItem;
             tip.Tip = selectedPub;
+
+            string selectedAutor = (string)autorComboBox.SelectedItem;
+            numeAutor.Nume = selectedAutor;
+            
+            filter(selectedPub, an.An, selectedAutor);
+
         }
 
         private void anComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int selectedAn = (int)anComboBox.SelectedItem;
-            an.An = selectedAn;
+            listaArticole.Clear();
+
+            var selectedAn = anComboBox.SelectedItem;
+            an.An = Convert.ToInt32(selectedAn);
+
+            string selectedPub = (string)tipPublicatieComboBox.SelectedItem;
+            tip.Tip = selectedPub;
+
+            string selectedAutor = (string)autorComboBox.SelectedItem;
+            numeAutor.Nume = selectedAutor;
+
+            filter(selectedPub, an.An, selectedAutor);
         }
 
         private void autorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            listaArticole.Clear();
+
+            var selectedAn = anComboBox.SelectedItem;
+            an.An = Convert.ToInt32(selectedAn);
+
+            string selectedPub = (string)tipPublicatieComboBox.SelectedItem;
+            tip.Tip = selectedPub;
+
             string selectedAutor = (string)autorComboBox.SelectedItem;
             numeAutor.Nume = selectedAutor;
+
+            filter(selectedPub, an.An, selectedAutor);
+        }
+
+        private void filter(string tipPublicatie, int an, string autor)
+        {
+            #region filtru tip publicatie
+            pubsDataGrid.ItemsSource = null;
+            if (!string.IsNullOrEmpty(tipPublicatie))
+            {
+                var articole = (from items in db.Articoles
+                                join j in db.Publicatiis on items.IDPublicatie equals j.IDPublicatie
+                                join k in db.Tip_Publicaties on j.TipPublicatie equals k.IDTipPublicatie
+                                where k.Tip == tipPublicatie
+                                select items).ToList();
+
+                foreach (var item in articole)
+                {
+                    Articol articol = new Articol();
+
+                    articol.Nume = item.Nume;
+
+                    articol.An = (from i in db.Detaliis
+                                  where i.IDDetalii== item.IDDetalii
+                                  select i.An).FirstOrDefault();
+
+                    articol.Autor = (from i in db.Autoris
+                                     join j in db.Autori_Articoles on i.IDAutor equals j.IDAutor
+                                     join k in db.Articoles on j.IDArticol equals k.IDArticol
+                                     select i.Nume).FirstOrDefault();
+
+                    articol.TipPublicatie = tipPublicatie;
+
+                    listaArticole.Add(articol);
+                }
+                if(an!=0)
+                {
+                    List<Articol> list = new List<Articol>();
+                    foreach(var item in listaArticole)
+                    {
+                        if(item.An != an)
+                            list.Add(item);
+                            
+                    }
+                    foreach(var articol in list)
+                    {
+                        listaArticole.Remove(articol);
+                    }
+                    list.Clear();
+                }
+                if(!string.IsNullOrEmpty(autor))
+                {
+                    List<Articol> listAutori = new List<Articol>();
+                    foreach (var item in listaArticole)
+                    {
+                        if (item.Autor != autor)
+                            listAutori.Add(item);
+
+                    }
+                    foreach (var articol in listAutori)
+                    {
+                        listaArticole.Remove(articol);
+                    }
+                    listAutori.Clear();
+                }    
+            }
+            pubsDataGrid.ItemsSource = listaArticole;
+            #endregion
+            #region filtru an
+            #endregion
+            #region filtru autor
+            #endregion
         }
     }
 

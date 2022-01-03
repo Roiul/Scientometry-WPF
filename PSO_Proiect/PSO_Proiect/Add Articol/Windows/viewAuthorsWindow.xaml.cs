@@ -156,7 +156,7 @@ namespace PSO_Proiect
             {
                 Autor temp = (Autor)row;
                 var articoleAutor=(from articole in db.Autori_Articoles
-                                   where articole.IDArticol==temp.ID
+                                   where articole.IDAutor==temp.ID
                                    select articole).ToList();
                 if (articoleAutor != null)
                 {

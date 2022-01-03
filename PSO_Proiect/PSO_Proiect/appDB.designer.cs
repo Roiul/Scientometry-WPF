@@ -30,12 +30,9 @@ namespace PSO_Proiect
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAfilieri(Afilieri instance);
-    partial void UpdateAfilieri(Afilieri instance);
-    partial void DeleteAfilieri(Afilieri instance);
-    partial void InsertTip_Publicatie(Tip_Publicatie instance);
-    partial void UpdateTip_Publicatie(Tip_Publicatie instance);
-    partial void DeleteTip_Publicatie(Tip_Publicatie instance);
+    partial void InsertPublicatii(Publicatii instance);
+    partial void UpdatePublicatii(Publicatii instance);
+    partial void DeletePublicatii(Publicatii instance);
     partial void InsertArticole(Articole instance);
     partial void UpdateArticole(Articole instance);
     partial void DeleteArticole(Articole instance);
@@ -60,9 +57,12 @@ namespace PSO_Proiect
     partial void InsertModPrezentare(ModPrezentare instance);
     partial void UpdateModPrezentare(ModPrezentare instance);
     partial void DeleteModPrezentare(ModPrezentare instance);
-    partial void InsertPublicatii(Publicatii instance);
-    partial void UpdatePublicatii(Publicatii instance);
-    partial void DeletePublicatii(Publicatii instance);
+    partial void InsertAfilieri(Afilieri instance);
+    partial void UpdateAfilieri(Afilieri instance);
+    partial void DeleteAfilieri(Afilieri instance);
+    partial void InsertTip_Publicatie(Tip_Publicatie instance);
+    partial void UpdateTip_Publicatie(Tip_Publicatie instance);
+    partial void DeleteTip_Publicatie(Tip_Publicatie instance);
     #endregion
 		
 		public appDBDataContext() : 
@@ -95,19 +95,11 @@ namespace PSO_Proiect
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Afilieri> Afilieris
+		public System.Data.Linq.Table<Publicatii> Publicatiis
 		{
 			get
 			{
-				return this.GetTable<Afilieri>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Tip_Publicatie> Tip_Publicaties
-		{
-			get
-			{
-				return this.GetTable<Tip_Publicatie>();
+				return this.GetTable<Publicatii>();
 			}
 		}
 		
@@ -175,59 +167,78 @@ namespace PSO_Proiect
 			}
 		}
 		
-		public System.Data.Linq.Table<Publicatii> Publicatiis
+		public System.Data.Linq.Table<Afilieri> Afilieris
 		{
 			get
 			{
-				return this.GetTable<Publicatii>();
+				return this.GetTable<Afilieri>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tip_Publicatie> Tip_Publicaties
+		{
+			get
+			{
+				return this.GetTable<Tip_Publicatie>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Afilieri")]
-	public partial class Afilieri : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Publicatii")]
+	public partial class Publicatii : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IDAfiliere;
+		private int _IDPublicatie;
 		
 		private string _Nume;
 		
-		private EntitySet<Autor_Afiliere> _Autor_Afilieres;
+		private int _TipPublicatie;
+		
+		private string _Editor;
+		
+		private EntitySet<Articole> _Articoles;
+		
+		private EntityRef<Tip_Publicatie> _Tip_Publicatie;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDAfiliereChanging(int value);
-    partial void OnIDAfiliereChanged();
+    partial void OnIDPublicatieChanging(int value);
+    partial void OnIDPublicatieChanged();
     partial void OnNumeChanging(string value);
     partial void OnNumeChanged();
+    partial void OnTipPublicatieChanging(int value);
+    partial void OnTipPublicatieChanged();
+    partial void OnEditorChanging(string value);
+    partial void OnEditorChanged();
     #endregion
 		
-		public Afilieri()
+		public Publicatii()
 		{
-			this._Autor_Afilieres = new EntitySet<Autor_Afiliere>(new Action<Autor_Afiliere>(this.attach_Autor_Afilieres), new Action<Autor_Afiliere>(this.detach_Autor_Afilieres));
+			this._Articoles = new EntitySet<Articole>(new Action<Articole>(this.attach_Articoles), new Action<Articole>(this.detach_Articoles));
+			this._Tip_Publicatie = default(EntityRef<Tip_Publicatie>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDAfiliere", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDAfiliere
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPublicatie", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDPublicatie
 		{
 			get
 			{
-				return this._IDAfiliere;
+				return this._IDPublicatie;
 			}
 			set
 			{
-				if ((this._IDAfiliere != value))
+				if ((this._IDPublicatie != value))
 				{
-					this.OnIDAfiliereChanging(value);
+					this.OnIDPublicatieChanging(value);
 					this.SendPropertyChanging();
-					this._IDAfiliere = value;
-					this.SendPropertyChanged("IDAfiliere");
-					this.OnIDAfiliereChanged();
+					this._IDPublicatie = value;
+					this.SendPropertyChanged("IDPublicatie");
+					this.OnIDPublicatieChanged();
 				}
 			}
 		}
@@ -252,16 +263,94 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Afilieri_Autor_Afiliere", Storage="_Autor_Afilieres", ThisKey="IDAfiliere", OtherKey="IDAfiliere")]
-		public EntitySet<Autor_Afiliere> Autor_Afilieres
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipPublicatie", DbType="Int NOT NULL")]
+		public int TipPublicatie
 		{
 			get
 			{
-				return this._Autor_Afilieres;
+				return this._TipPublicatie;
 			}
 			set
 			{
-				this._Autor_Afilieres.Assign(value);
+				if ((this._TipPublicatie != value))
+				{
+					if (this._Tip_Publicatie.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTipPublicatieChanging(value);
+					this.SendPropertyChanging();
+					this._TipPublicatie = value;
+					this.SendPropertyChanged("TipPublicatie");
+					this.OnTipPublicatieChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Editor", DbType="NChar(100) NOT NULL", CanBeNull=false)]
+		public string Editor
+		{
+			get
+			{
+				return this._Editor;
+			}
+			set
+			{
+				if ((this._Editor != value))
+				{
+					this.OnEditorChanging(value);
+					this.SendPropertyChanging();
+					this._Editor = value;
+					this.SendPropertyChanged("Editor");
+					this.OnEditorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Publicatii_Articole", Storage="_Articoles", ThisKey="IDPublicatie", OtherKey="IDPublicatie")]
+		public EntitySet<Articole> Articoles
+		{
+			get
+			{
+				return this._Articoles;
+			}
+			set
+			{
+				this._Articoles.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tip_Publicatie_Publicatii", Storage="_Tip_Publicatie", ThisKey="TipPublicatie", OtherKey="IDTipPublicatie", IsForeignKey=true)]
+		public Tip_Publicatie Tip_Publicatie
+		{
+			get
+			{
+				return this._Tip_Publicatie.Entity;
+			}
+			set
+			{
+				Tip_Publicatie previousValue = this._Tip_Publicatie.Entity;
+				if (((previousValue != value) 
+							|| (this._Tip_Publicatie.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tip_Publicatie.Entity = null;
+						previousValue.Publicatiis.Remove(this);
+					}
+					this._Tip_Publicatie.Entity = value;
+					if ((value != null))
+					{
+						value.Publicatiis.Add(this);
+						this._TipPublicatie = value.IDTipPublicatie;
+					}
+					else
+					{
+						this._TipPublicatie = default(int);
+					}
+					this.SendPropertyChanged("Tip_Publicatie");
+				}
 			}
 		}
 		
@@ -285,130 +374,16 @@ namespace PSO_Proiect
 			}
 		}
 		
-		private void attach_Autor_Afilieres(Autor_Afiliere entity)
+		private void attach_Articoles(Articole entity)
 		{
 			this.SendPropertyChanging();
-			entity.Afilieri = this;
+			entity.Publicatii = this;
 		}
 		
-		private void detach_Autor_Afilieres(Autor_Afiliere entity)
+		private void detach_Articoles(Articole entity)
 		{
 			this.SendPropertyChanging();
-			entity.Afilieri = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Tip Publicatie]")]
-	public partial class Tip_Publicatie : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IDTipPublicatie;
-		
-		private string _Tip;
-		
-		private EntitySet<Publicatii> _Publicatiis;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDTipPublicatieChanging(int value);
-    partial void OnIDTipPublicatieChanged();
-    partial void OnTipChanging(string value);
-    partial void OnTipChanged();
-    #endregion
-		
-		public Tip_Publicatie()
-		{
-			this._Publicatiis = new EntitySet<Publicatii>(new Action<Publicatii>(this.attach_Publicatiis), new Action<Publicatii>(this.detach_Publicatiis));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDTipPublicatie", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDTipPublicatie
-		{
-			get
-			{
-				return this._IDTipPublicatie;
-			}
-			set
-			{
-				if ((this._IDTipPublicatie != value))
-				{
-					this.OnIDTipPublicatieChanging(value);
-					this.SendPropertyChanging();
-					this._IDTipPublicatie = value;
-					this.SendPropertyChanged("IDTipPublicatie");
-					this.OnIDTipPublicatieChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tip", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string Tip
-		{
-			get
-			{
-				return this._Tip;
-			}
-			set
-			{
-				if ((this._Tip != value))
-				{
-					this.OnTipChanging(value);
-					this.SendPropertyChanging();
-					this._Tip = value;
-					this.SendPropertyChanged("Tip");
-					this.OnTipChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tip_Publicatie_Publicatii", Storage="_Publicatiis", ThisKey="IDTipPublicatie", OtherKey="TipPublicatie")]
-		public EntitySet<Publicatii> Publicatiis
-		{
-			get
-			{
-				return this._Publicatiis;
-			}
-			set
-			{
-				this._Publicatiis.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Publicatiis(Publicatii entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tip_Publicatie = this;
-		}
-		
-		private void detach_Publicatiis(Publicatii entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tip_Publicatie = null;
+			entity.Publicatii = null;
 		}
 	}
 	
@@ -440,11 +415,11 @@ namespace PSO_Proiect
 		
 		private EntitySet<Citari> _Citaris;
 		
+		private EntityRef<Publicatii> _Publicatii;
+		
 		private EntityRef<Detalii> _Detalii;
 		
 		private EntityRef<ModPrezentare> _ModPrezentare;
-		
-		private EntityRef<Publicatii> _Publicatii;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -474,9 +449,9 @@ namespace PSO_Proiect
 		{
 			this._Autori_Articoles = new EntitySet<Autori_Articole>(new Action<Autori_Articole>(this.attach_Autori_Articoles), new Action<Autori_Articole>(this.detach_Autori_Articoles));
 			this._Citaris = new EntitySet<Citari>(new Action<Citari>(this.attach_Citaris), new Action<Citari>(this.detach_Citaris));
+			this._Publicatii = default(EntityRef<Publicatii>);
 			this._Detalii = default(EntityRef<Detalii>);
 			this._ModPrezentare = default(EntityRef<ModPrezentare>);
-			this._Publicatii = default(EntityRef<Publicatii>);
 			OnCreated();
 		}
 		
@@ -698,6 +673,40 @@ namespace PSO_Proiect
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Publicatii_Articole", Storage="_Publicatii", ThisKey="IDPublicatie", OtherKey="IDPublicatie", IsForeignKey=true)]
+		public Publicatii Publicatii
+		{
+			get
+			{
+				return this._Publicatii.Entity;
+			}
+			set
+			{
+				Publicatii previousValue = this._Publicatii.Entity;
+				if (((previousValue != value) 
+							|| (this._Publicatii.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Publicatii.Entity = null;
+						previousValue.Articoles.Remove(this);
+					}
+					this._Publicatii.Entity = value;
+					if ((value != null))
+					{
+						value.Articoles.Add(this);
+						this._IDPublicatie = value.IDPublicatie;
+					}
+					else
+					{
+						this._IDPublicatie = default(int);
+					}
+					this.SendPropertyChanged("Publicatii");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Detalii_Articole", Storage="_Detalii", ThisKey="IDDetalii", OtherKey="IDDetalii", IsForeignKey=true)]
 		public Detalii Detalii
 		{
@@ -766,40 +775,6 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Publicatii_Articole", Storage="_Publicatii", ThisKey="IDPublicatie", OtherKey="IDPublicatie", IsForeignKey=true)]
-		public Publicatii Publicatii
-		{
-			get
-			{
-				return this._Publicatii.Entity;
-			}
-			set
-			{
-				Publicatii previousValue = this._Publicatii.Entity;
-				if (((previousValue != value) 
-							|| (this._Publicatii.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Publicatii.Entity = null;
-						previousValue.Articoles.Remove(this);
-					}
-					this._Publicatii.Entity = value;
-					if ((value != null))
-					{
-						value.Articoles.Add(this);
-						this._IDPublicatie = value.IDPublicatie;
-					}
-					else
-					{
-						this._IDPublicatie = default(int);
-					}
-					this.SendPropertyChanged("Publicatii");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -857,9 +832,9 @@ namespace PSO_Proiect
 		
 		private int _IDAfiliere;
 		
-		private EntityRef<Afilieri> _Afilieri;
-		
 		private EntityRef<Autori> _Autori;
+		
+		private EntityRef<Afilieri> _Afilieri;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -875,8 +850,8 @@ namespace PSO_Proiect
 		
 		public Autor_Afiliere()
 		{
-			this._Afilieri = default(EntityRef<Afilieri>);
 			this._Autori = default(EntityRef<Autori>);
+			this._Afilieri = default(EntityRef<Afilieri>);
 			OnCreated();
 		}
 		
@@ -948,40 +923,6 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Afilieri_Autor_Afiliere", Storage="_Afilieri", ThisKey="IDAfiliere", OtherKey="IDAfiliere", IsForeignKey=true)]
-		public Afilieri Afilieri
-		{
-			get
-			{
-				return this._Afilieri.Entity;
-			}
-			set
-			{
-				Afilieri previousValue = this._Afilieri.Entity;
-				if (((previousValue != value) 
-							|| (this._Afilieri.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Afilieri.Entity = null;
-						previousValue.Autor_Afilieres.Remove(this);
-					}
-					this._Afilieri.Entity = value;
-					if ((value != null))
-					{
-						value.Autor_Afilieres.Add(this);
-						this._IDAfiliere = value.IDAfiliere;
-					}
-					else
-					{
-						this._IDAfiliere = default(int);
-					}
-					this.SendPropertyChanged("Afilieri");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autori_Autor_Afiliere", Storage="_Autori", ThisKey="IDAutor", OtherKey="IDAutor", IsForeignKey=true)]
 		public Autori Autori
 		{
@@ -1012,6 +953,40 @@ namespace PSO_Proiect
 						this._IDAutor = default(int);
 					}
 					this.SendPropertyChanged("Autori");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Afilieri_Autor_Afiliere", Storage="_Afilieri", ThisKey="IDAfiliere", OtherKey="IDAfiliere", IsForeignKey=true)]
+		public Afilieri Afilieri
+		{
+			get
+			{
+				return this._Afilieri.Entity;
+			}
+			set
+			{
+				Afilieri previousValue = this._Afilieri.Entity;
+				if (((previousValue != value) 
+							|| (this._Afilieri.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Afilieri.Entity = null;
+						previousValue.Autor_Afilieres.Remove(this);
+					}
+					this._Afilieri.Entity = value;
+					if ((value != null))
+					{
+						value.Autor_Afilieres.Add(this);
+						this._IDAfiliere = value.IDAfiliere;
+					}
+					else
+					{
+						this._IDAfiliere = default(int);
+					}
+					this.SendPropertyChanged("Afilieri");
 				}
 			}
 		}
@@ -1702,7 +1677,7 @@ namespace PSO_Proiect
 		
 		private int _IDDetalii;
 		
-		private int _An;
+		private System.Nullable<int> _An;
 		
 		private string _Pagina;
 		
@@ -1718,7 +1693,7 @@ namespace PSO_Proiect
     partial void OnCreated();
     partial void OnIDDetaliiChanging(int value);
     partial void OnIDDetaliiChanged();
-    partial void OnAnChanging(int value);
+    partial void OnAnChanging(System.Nullable<int> value);
     partial void OnAnChanged();
     partial void OnPaginaChanging(string value);
     partial void OnPaginaChanged();
@@ -1754,8 +1729,8 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_An", DbType="Int NOT NULL")]
-		public int An
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_An", DbType="Int")]
+		public System.Nullable<int> An
 		{
 			get
 			{
@@ -2145,61 +2120,50 @@ namespace PSO_Proiect
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Publicatii")]
-	public partial class Publicatii : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Afilieri")]
+	public partial class Afilieri : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IDPublicatie;
+		private int _IDAfiliere;
 		
 		private string _Nume;
 		
-		private int _TipPublicatie;
-		
-		private string _Editor;
-		
-		private EntitySet<Articole> _Articoles;
-		
-		private EntityRef<Tip_Publicatie> _Tip_Publicatie;
+		private EntitySet<Autor_Afiliere> _Autor_Afilieres;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDPublicatieChanging(int value);
-    partial void OnIDPublicatieChanged();
+    partial void OnIDAfiliereChanging(int value);
+    partial void OnIDAfiliereChanged();
     partial void OnNumeChanging(string value);
     partial void OnNumeChanged();
-    partial void OnTipPublicatieChanging(int value);
-    partial void OnTipPublicatieChanged();
-    partial void OnEditorChanging(string value);
-    partial void OnEditorChanged();
     #endregion
 		
-		public Publicatii()
+		public Afilieri()
 		{
-			this._Articoles = new EntitySet<Articole>(new Action<Articole>(this.attach_Articoles), new Action<Articole>(this.detach_Articoles));
-			this._Tip_Publicatie = default(EntityRef<Tip_Publicatie>);
+			this._Autor_Afilieres = new EntitySet<Autor_Afiliere>(new Action<Autor_Afiliere>(this.attach_Autor_Afilieres), new Action<Autor_Afiliere>(this.detach_Autor_Afilieres));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPublicatie", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDPublicatie
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDAfiliere", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDAfiliere
 		{
 			get
 			{
-				return this._IDPublicatie;
+				return this._IDAfiliere;
 			}
 			set
 			{
-				if ((this._IDPublicatie != value))
+				if ((this._IDAfiliere != value))
 				{
-					this.OnIDPublicatieChanging(value);
+					this.OnIDAfiliereChanging(value);
 					this.SendPropertyChanging();
-					this._IDPublicatie = value;
-					this.SendPropertyChanged("IDPublicatie");
-					this.OnIDPublicatieChanged();
+					this._IDAfiliere = value;
+					this.SendPropertyChanged("IDAfiliere");
+					this.OnIDAfiliereChanged();
 				}
 			}
 		}
@@ -2224,94 +2188,16 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TipPublicatie", DbType="Int NOT NULL")]
-		public int TipPublicatie
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Afilieri_Autor_Afiliere", Storage="_Autor_Afilieres", ThisKey="IDAfiliere", OtherKey="IDAfiliere")]
+		public EntitySet<Autor_Afiliere> Autor_Afilieres
 		{
 			get
 			{
-				return this._TipPublicatie;
+				return this._Autor_Afilieres;
 			}
 			set
 			{
-				if ((this._TipPublicatie != value))
-				{
-					if (this._Tip_Publicatie.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTipPublicatieChanging(value);
-					this.SendPropertyChanging();
-					this._TipPublicatie = value;
-					this.SendPropertyChanged("TipPublicatie");
-					this.OnTipPublicatieChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Editor", DbType="NChar(100) NOT NULL", CanBeNull=false)]
-		public string Editor
-		{
-			get
-			{
-				return this._Editor;
-			}
-			set
-			{
-				if ((this._Editor != value))
-				{
-					this.OnEditorChanging(value);
-					this.SendPropertyChanging();
-					this._Editor = value;
-					this.SendPropertyChanged("Editor");
-					this.OnEditorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Publicatii_Articole", Storage="_Articoles", ThisKey="IDPublicatie", OtherKey="IDPublicatie")]
-		public EntitySet<Articole> Articoles
-		{
-			get
-			{
-				return this._Articoles;
-			}
-			set
-			{
-				this._Articoles.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tip_Publicatie_Publicatii", Storage="_Tip_Publicatie", ThisKey="TipPublicatie", OtherKey="IDTipPublicatie", IsForeignKey=true)]
-		public Tip_Publicatie Tip_Publicatie
-		{
-			get
-			{
-				return this._Tip_Publicatie.Entity;
-			}
-			set
-			{
-				Tip_Publicatie previousValue = this._Tip_Publicatie.Entity;
-				if (((previousValue != value) 
-							|| (this._Tip_Publicatie.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Tip_Publicatie.Entity = null;
-						previousValue.Publicatiis.Remove(this);
-					}
-					this._Tip_Publicatie.Entity = value;
-					if ((value != null))
-					{
-						value.Publicatiis.Add(this);
-						this._TipPublicatie = value.IDTipPublicatie;
-					}
-					else
-					{
-						this._TipPublicatie = default(int);
-					}
-					this.SendPropertyChanged("Tip_Publicatie");
-				}
+				this._Autor_Afilieres.Assign(value);
 			}
 		}
 		
@@ -2335,16 +2221,130 @@ namespace PSO_Proiect
 			}
 		}
 		
-		private void attach_Articoles(Articole entity)
+		private void attach_Autor_Afilieres(Autor_Afiliere entity)
 		{
 			this.SendPropertyChanging();
-			entity.Publicatii = this;
+			entity.Afilieri = this;
 		}
 		
-		private void detach_Articoles(Articole entity)
+		private void detach_Autor_Afilieres(Autor_Afiliere entity)
 		{
 			this.SendPropertyChanging();
-			entity.Publicatii = null;
+			entity.Afilieri = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Tip Publicatie]")]
+	public partial class Tip_Publicatie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDTipPublicatie;
+		
+		private string _Tip;
+		
+		private EntitySet<Publicatii> _Publicatiis;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDTipPublicatieChanging(int value);
+    partial void OnIDTipPublicatieChanged();
+    partial void OnTipChanging(string value);
+    partial void OnTipChanged();
+    #endregion
+		
+		public Tip_Publicatie()
+		{
+			this._Publicatiis = new EntitySet<Publicatii>(new Action<Publicatii>(this.attach_Publicatiis), new Action<Publicatii>(this.detach_Publicatiis));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDTipPublicatie", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDTipPublicatie
+		{
+			get
+			{
+				return this._IDTipPublicatie;
+			}
+			set
+			{
+				if ((this._IDTipPublicatie != value))
+				{
+					this.OnIDTipPublicatieChanging(value);
+					this.SendPropertyChanging();
+					this._IDTipPublicatie = value;
+					this.SendPropertyChanged("IDTipPublicatie");
+					this.OnIDTipPublicatieChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tip", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Tip
+		{
+			get
+			{
+				return this._Tip;
+			}
+			set
+			{
+				if ((this._Tip != value))
+				{
+					this.OnTipChanging(value);
+					this.SendPropertyChanging();
+					this._Tip = value;
+					this.SendPropertyChanged("Tip");
+					this.OnTipChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tip_Publicatie_Publicatii", Storage="_Publicatiis", ThisKey="IDTipPublicatie", OtherKey="TipPublicatie")]
+		public EntitySet<Publicatii> Publicatiis
+		{
+			get
+			{
+				return this._Publicatiis;
+			}
+			set
+			{
+				this._Publicatiis.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Publicatiis(Publicatii entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tip_Publicatie = this;
+		}
+		
+		private void detach_Publicatiis(Publicatii entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tip_Publicatie = null;
 		}
 	}
 }

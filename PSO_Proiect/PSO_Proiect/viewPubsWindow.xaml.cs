@@ -58,7 +58,7 @@ namespace PSO_Proiect
             foreach (var item in ani)
             {
                 int a = 0;
-                a = item;
+                a = (int)item;
                 listaAni.Add(a);
             }
 
@@ -137,7 +137,7 @@ namespace PSO_Proiect
                                          join k in db.Articoles on j.IDPublicatie equals k.IDPublicatie
                                          select i.IDTipPublicatie).ToList().ToString();
                 
-                articol.An = (from i in db.Detaliis
+                articol.An = (int)(from i in db.Detaliis
                               join j in db.Articoles on i.IDDetalii equals j.IDDetalii
                               select i.An).FirstOrDefault();
 
@@ -208,8 +208,8 @@ namespace PSO_Proiect
 
         private void anComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int selectedAn = (int)anComboBox.SelectedItem;
-            an.An = selectedAn;
+            var selectedAn = anComboBox.SelectedItem;
+            an.An = Convert.ToInt32(selectedAn);
         }
 
         private void autorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

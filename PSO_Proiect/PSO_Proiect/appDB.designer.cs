@@ -1702,7 +1702,7 @@ namespace PSO_Proiect
 		
 		private int _IDDetalii;
 		
-		private System.Nullable<int> _An;
+		private int _An;
 		
 		private string _Pagina;
 		
@@ -1718,7 +1718,7 @@ namespace PSO_Proiect
     partial void OnCreated();
     partial void OnIDDetaliiChanging(int value);
     partial void OnIDDetaliiChanged();
-    partial void OnAnChanging(System.Nullable<int> value);
+    partial void OnAnChanging(int value);
     partial void OnAnChanged();
     partial void OnPaginaChanging(string value);
     partial void OnPaginaChanged();
@@ -1754,8 +1754,8 @@ namespace PSO_Proiect
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_An", DbType="Int")]
-		public System.Nullable<int> An
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_An", DbType="Int NOT NULL")]
+		public int An
 		{
 			get
 			{

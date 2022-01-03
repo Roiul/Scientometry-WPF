@@ -29,6 +29,9 @@ namespace PSO_Proiect
         public Action exitButtonAction;
         public Action<string, string, int, string> getPubs;
 
+        public static Tip_Publicatie tip= new Tip_Publicatie();
+        public static Detalii an = new Detalii();
+        public static Autori numeAutor=new Autori();
         public viewPubsWindow()
         {
             InitializeComponent();
@@ -55,7 +58,7 @@ namespace PSO_Proiect
             foreach (var item in ani)
             {
                 int a = 0;
-                a = item.Value;
+                a = item;
                 listaAni.Add(a);
             }
 
@@ -119,7 +122,7 @@ namespace PSO_Proiect
                     var tipuriPublicatii = (from l in db.Tip_Publicaties
                                             where l.IDTipPublicatie == idPublicatii[i]
                                             select l).FirstOrDefault();
-                    if (i == 0)
+                    if (tip == tipuriPublicatii)
                     {
                         articol.TipPublicatie += tipuriPublicatii.Tip;
                     }
@@ -133,13 +136,10 @@ namespace PSO_Proiect
                                          join j in db.Publicatiis on i.IDTipPublicatie equals j.TipPublicatie
                                          join k in db.Articoles on j.IDPublicatie equals k.IDPublicatie
                                          select i.IDTipPublicatie).ToList().ToString();
-                //foreach(var it in listaArticole)
-                //{
-                //    pubsDataGrid.Columns.Add(it);
-                //}
+                
                 articol.An = (from i in db.Detaliis
                               join j in db.Articoles on i.IDDetalii equals j.IDDetalii
-                              select i.An).ToList();
+                              select i.An).FirstOrDefault();
 
                 articol.Nume=(from i in db.Articoles
                               select i.Nume).ToList().ToString();
@@ -177,7 +177,22 @@ namespace PSO_Proiect
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-
+            tip.Tip = null;
+            tipPublicatieComboBox.Text = "";
+            //tipPublicatieComboBox.ItemsSource = null;
+            //tipPublicatieComboBox.Items.Clear();
+            //tipPublicatieComboBox.ClearValue(ItemsControl.ItemsSourceProperty);
+            //tipPublicatieComboBox.ItemsSource = listaPublicatii;
+            //tipPublicatieComboBox.ItemsSource=NewSo
+            an.An = 0;
+            anComboBox.Text = "";
+            //anComboBox.Items.Clear();
+            //anComboBox.ClearValue(ItemsControl.ItemsSourceProperty);
+            numeAutor.Nume = null;
+            autorComboBox.Text = "";
+            //autorComboBox.ItemsSource = null;
+            //autorComboBox.Items.Clear();
+            //autorComboBox.ClearValue(ItemsControl.ItemsSourceProperty);
         }
 
         private void authorsButton_Click(object sender, RoutedEventArgs e)
@@ -185,33 +200,30 @@ namespace PSO_Proiect
             viewAuthorsButtonAction();
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void tipPublicatieComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            string selectedPub = (string)tipPublicatieComboBox.SelectedItem;
+            tip.Tip = selectedPub;
         }
 
         private void anComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-
+            int selectedAn = (int)anComboBox.SelectedItem;
+            an.An = selectedAn;
         }
 
         private void autorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            string selectedAutor = (string)autorComboBox.SelectedItem;
+            numeAutor.Nume = selectedAutor;
         }
     }
+
     class Articol
     {
         public string Nume { get; set; }
         public string TipPublicatie { get; set; }
-        public List<int?> An { get; set; }
+        public int An { get; set; }
         public string Autor { get; set; }
-
     }
 }

@@ -76,7 +76,7 @@
   <Table Name="dbo.Detalii" Member="Detaliis">
     <Type Name="Detalii">
       <Column Name="IDDetalii" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="An" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="An" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Pagina" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Volum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Numar" Type="System.Int32" DbType="Int" CanBeNull="true" />
